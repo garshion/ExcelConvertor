@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Bass.Tools.Common
+namespace Bass.Tools.ExcelConvertor.Common
 {
     /// <summary>
     /// 프로그램에서 사용하는 데이터 타입

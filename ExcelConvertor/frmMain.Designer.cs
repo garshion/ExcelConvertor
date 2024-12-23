@@ -1,4 +1,4 @@
-﻿namespace Bass.Tools
+﻿namespace Bass.Tools.ExcelConvertor
 {
     partial class frmMain
     {

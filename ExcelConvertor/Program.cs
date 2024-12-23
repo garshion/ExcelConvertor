@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Bass.Tools
+namespace Bass.Tools.ExcelConvertor
 {
     internal static class Program
     {
