@@ -1,6 +1,8 @@
 using Bass.Tools.Config;
 using System;
+using System.Diagnostics;
 using System.Drawing.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Bass.Tools.ExcelConvertor
@@ -59,6 +61,8 @@ namespace Bass.Tools.ExcelConvertor
                 radioUseClass.Checked = true;
             else
                 radioUseStruct.Checked = true;
+
+            _ExcelFileFolderRefresh();
 
             mSettingLock = false;
         }
@@ -179,15 +183,16 @@ namespace Bass.Tools.ExcelConvertor
         private void _AddControlEvent()
         {
             // Button Actions
-            btnExcelFileListRefresh.Click += _ApplySetting;
-            btnExcelFileFolderOpen.Click += _ApplySetting;
-            btnBrowseExcelFileFolder.Click += _ApplySetting;
-            btnExcelSelectAll.Click += _ApplySetting;
-            btnExcelDeselectAll.Click += _ApplySetting;
-            btnOpenExportFolder.Click += _ApplySetting;
-            btnBrowseExportFolder.Click += _ApplySetting;
-            btnShowLog.Click += _ApplySetting;
-            btnConvert.Click += _ApplySetting;
+            btnExcelFileListRefresh.Click += BtnExcelFileListRefresh_Click;
+            btnExcelFileFolderOpen.Click += BtnExcelFileFolderOpen_Click;
+
+            btnBrowseExcelFileFolder.Click += BtnBrowseExcelFileFolder_Click;
+            btnExcelSelectAll.Click += BtnExcelSelectAll_Click;
+            btnExcelDeselectAll.Click += BtnExcelDeselectAll_Click;
+            btnOpenExportFolder.Click += BtnOpenExportFolder_Click;
+            btnBrowseExportFolder.Click += BtnBrowseExportFolder_Click;
+            btnShowLog.Click += BtnShowLog_Click;
+            btnConvert.Click += BtnConvert_Click;
 
             // CheckBox Actions
             checkCreateSQLiteDB.CheckedChanged += _ApplySetting;
@@ -213,6 +218,97 @@ namespace Bass.Tools.ExcelConvertor
             txtExcelFileFolder.TextChanged += _ApplySetting;
             txtExportFolder.TextChanged += _ApplySetting;
         }
+
+        #region Button Click Event
+
+        private void BtnConvert_Click(object sender, EventArgs e)
+        {
+            _ApplyControlEnable(false);
+
+            // todo : 구현 필요
+            // 로그 삭제 체크부터
+
+
+
+            _ApplyControlEnable(true);
+        }
+
+        private void BtnShowLog_Click(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void BtnBrowseExportFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dlg = new FolderBrowserDialog();
+            if (Directory.Exists(txtExportFolder.Text))
+            {
+                dlg.SelectedPath = txtExportFolder.Text;
+            }
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                if (txtExcelFileFolder.Text != dlg.SelectedPath)
+                    txtExportFolder.Text = dlg.SelectedPath;
+            }
+        }
+
+        private void BtnOpenExportFolder_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(txtExportFolder.Text))
+            {
+                Process.Start("explorer.exe", txtExportFolder.Text);
+            }
+        }
+
+        private void BtnExcelDeselectAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListExistsExcelFiles.Items.Count; i++)
+            {
+                checkedListExistsExcelFiles.SetItemChecked(i, false);
+            }
+        }
+
+        private void BtnExcelSelectAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListExistsExcelFiles.Items.Count; i++)
+            {
+                checkedListExistsExcelFiles.SetItemChecked(i, true);
+            }
+        }
+
+        private void BtnBrowseExcelFileFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dlg = new FolderBrowserDialog();
+            if (Directory.Exists(txtExcelFileFolder.Text))
+            {
+                dlg.SelectedPath = txtExcelFileFolder.Text;
+            }
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                if (txtExcelFileFolder.Text != dlg.SelectedPath)
+                {
+                    txtExcelFileFolder.Text = dlg.SelectedPath;
+                    _ExcelFileFolderRefresh();
+                }
+            }
+        }
+
+        private void BtnExcelFileFolderOpen_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(txtExcelFileFolder.Text))
+            {
+                Process.Start("explorer.exe", txtExcelFileFolder.Text);
+            }
+        }
+
+        private void BtnExcelFileListRefresh_Click(object sender, EventArgs e)
+        {
+            _ExcelFileFolderRefresh();
+        }
+
+        #endregion  // Button Click Event
 
 
         private void _ApplySetting(object sender, EventArgs e)
@@ -263,7 +359,29 @@ namespace Bass.Tools.ExcelConvertor
             _UpdateControlEnable();
         }
 
-        #endregion
+        #endregion // form Control Event Function
+
+
+        #region Functions
+
+        private void _ExcelFileFolderRefresh()
+        {
+            if (!Directory.Exists(txtExcelFileFolder.Text))
+                return;
+
+            checkedListExistsExcelFiles.Items.Clear();
+            string[] files = Directory.GetFiles(txtExcelFileFolder.Text, "*.xlsx;*.xls;", SearchOption.TopDirectoryOnly);
+            foreach (string file in files)
+            {
+                checkedListExistsExcelFiles.Items.Add(Path.GetFileName(file), CheckState.Checked);
+            }
+        }
+
+
+
+        #endregion // Functions
+
+
 
     }
 }
