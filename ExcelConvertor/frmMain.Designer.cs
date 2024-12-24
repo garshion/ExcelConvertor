@@ -52,13 +52,13 @@
             this.radioDBScriptFileExportEachFile = new System.Windows.Forms.RadioButton();
             this.radioDBScriptFileExportSingle = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkUseNamespace = new System.Windows.Forms.CheckBox();
+            this.txtNamespace = new System.Windows.Forms.TextBox();
+            this.checkExportCSSource = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.radioUseStruct = new System.Windows.Forms.RadioButton();
             this.radioUseClass = new System.Windows.Forms.RadioButton();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkExportCPPSource = new System.Windows.Forms.CheckBox();
             this.radioSourceCodeFileExportEachFile = new System.Windows.Forms.RadioButton();
             this.radioSourceCodeFileExportSingle = new System.Windows.Forms.RadioButton();
             this.progressWork = new System.Windows.Forms.ProgressBar();
@@ -312,11 +312,11 @@
             // 
             this.groupBox5.Controls.Add(this.radioSourceCodeFileExportEachFile);
             this.groupBox5.Controls.Add(this.radioSourceCodeFileExportSingle);
-            this.groupBox5.Controls.Add(this.checkBox7);
+            this.groupBox5.Controls.Add(this.checkExportCPPSource);
             this.groupBox5.Controls.Add(this.groupBox6);
-            this.groupBox5.Controls.Add(this.checkBox6);
-            this.groupBox5.Controls.Add(this.textBox2);
-            this.groupBox5.Controls.Add(this.checkBox5);
+            this.groupBox5.Controls.Add(this.checkExportCSSource);
+            this.groupBox5.Controls.Add(this.txtNamespace);
+            this.groupBox5.Controls.Add(this.checkUseNamespace);
             this.groupBox5.Location = new System.Drawing.Point(642, 369);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(610, 191);
@@ -324,32 +324,32 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Source Code Option";
             // 
-            // checkBox5
+            // checkUseNamespace
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(9, 24);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(133, 19);
-            this.checkBox5.TabIndex = 0;
-            this.checkBox5.Text = "Use Namespace";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkUseNamespace.AutoSize = true;
+            this.checkUseNamespace.Location = new System.Drawing.Point(9, 24);
+            this.checkUseNamespace.Name = "checkUseNamespace";
+            this.checkUseNamespace.Size = new System.Drawing.Size(133, 19);
+            this.checkUseNamespace.TabIndex = 0;
+            this.checkUseNamespace.Text = "Use Namespace";
+            this.checkUseNamespace.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtNamespace
             // 
-            this.textBox2.Location = new System.Drawing.Point(9, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(595, 25);
-            this.textBox2.TabIndex = 1;
+            this.txtNamespace.Location = new System.Drawing.Point(9, 49);
+            this.txtNamespace.Name = "txtNamespace";
+            this.txtNamespace.Size = new System.Drawing.Size(595, 25);
+            this.txtNamespace.TabIndex = 1;
             // 
-            // checkBox6
+            // checkExportCSSource
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(9, 80);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(183, 19);
-            this.checkBox6.TabIndex = 2;
-            this.checkBox6.Text = "Create C# Source Code";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkExportCSSource.AutoSize = true;
+            this.checkExportCSSource.Location = new System.Drawing.Point(9, 80);
+            this.checkExportCSSource.Name = "checkExportCSSource";
+            this.checkExportCSSource.Size = new System.Drawing.Size(183, 19);
+            this.checkExportCSSource.TabIndex = 2;
+            this.checkExportCSSource.Text = "Create C# Source Code";
+            this.checkExportCSSource.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -384,15 +384,15 @@
             this.radioUseClass.Text = "Use Class";
             this.radioUseClass.UseVisualStyleBackColor = true;
             // 
-            // checkBox7
+            // checkExportCPPSource
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(9, 106);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(191, 19);
-            this.checkBox7.TabIndex = 4;
-            this.checkBox7.Text = "Create C++ Source Code";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkExportCPPSource.AutoSize = true;
+            this.checkExportCPPSource.Location = new System.Drawing.Point(9, 106);
+            this.checkExportCPPSource.Name = "checkExportCPPSource";
+            this.checkExportCPPSource.Size = new System.Drawing.Size(191, 19);
+            this.checkExportCPPSource.TabIndex = 4;
+            this.checkExportCPPSource.Text = "Create C++ Source Code";
+            this.checkExportCPPSource.UseVisualStyleBackColor = true;
             // 
             // radioSourceCodeFileExportEachFile
             // 
@@ -501,13 +501,13 @@
         private System.Windows.Forms.CheckBox checkCreateMSSQLScheme;
         private System.Windows.Forms.CheckBox checkCreateMySQLScheme;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkUseNamespace;
+        private System.Windows.Forms.CheckBox checkExportCPPSource;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton radioUseClass;
         private System.Windows.Forms.RadioButton radioUseStruct;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkExportCSSource;
+        private System.Windows.Forms.TextBox txtNamespace;
         private System.Windows.Forms.RadioButton radioSourceCodeFileExportEachFile;
         private System.Windows.Forms.RadioButton radioSourceCodeFileExportSingle;
         private System.Windows.Forms.ProgressBar progressWork;
