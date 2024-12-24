@@ -33,25 +33,45 @@ namespace Bass.Tools.Config
             }
             catch (Exception ex)
             {
+                // Setting Save Failed
                 Console.WriteLine(ex.Message);
                 return false;
             }
 
             return true;
         }
+
+        /// <summary>
+        /// Load Setting Data from Config File
+        /// </summary>
+        /// <returns></returns>
         public static bool Load()
         {
-            if(!File.Exists(CONFIG_FILE_NAME))
+            if (!File.Exists(CONFIG_FILE_NAME))
+            {
+                // File Not Exists.
+                SetDefault();
+                return Save();
+            }
+
+            try
+            {
+                string loadJson = File.ReadAllText(CONFIG_FILE_NAME);
+                Setting = JsonConvert.DeserializeObject<ConfigData>(loadJson);
+            }
+            catch (Exception ex)
+            {
+                // Setting Load Failed
+                Console.WriteLine(ex.Message);
                 return false;
-
-            string loadJson = string.Empty;
-
-            Setting = JsonConvert.DeserializeObject<ConfigData>(loadJson);
-
+            }
 
             return true;
         }
 
+        /// <summary>
+        /// Set Default Setting
+        /// </summary>
         public static void SetDefault()
         {
             Setting.SetDefault();

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bass.Tools.Config
 {
@@ -18,20 +14,20 @@ namespace Bass.Tools.Config
         public string ExportFolder { get; set; } = string.Empty;
 
         // SQLite Databse Option
-        public bool ExportSQLiteDB { get; set; } = true;
+        public bool CreateSQLiteDB { get; set; } = true;
         public EExportFileOption SQLiteDBFileOption { get; set; } = EExportFileOption.SingleFile;
 
 
         // Database Script Option
-        public bool ExportMySQLScheme { get; set; } = false;
-        public bool ExportMSSQLScheme { get; set; } = false;
-        public bool ExportInsertData { get; set; } = false;
+        public bool CreateMySQLScheme { get; set; } = false;
+        public bool CreateMSSQLScheme { get; set; } = false;
+        public bool CreateDataInsertScript { get; set; } = false;
 
         public EExportFileOption DatabaseScriptFileOption { get; set; } = EExportFileOption.SingleFile;
 
         // Source Code Option
         public bool UseNamespace { get; set; } = false;
-        public string NamespaceData { get; set; } = string.Empty;
+        public string NamespaceString { get; set; } = string.Empty;
         public bool ExportCSSourceCode { get; set; } = false;
         public bool ExportCPPSourceCode { get; set; } = false;
         public EExportFileOption SourceCodeFileOption { get; set; } = EExportFileOption.SingleFile;
@@ -46,16 +42,16 @@ namespace Bass.Tools.Config
         {
             ExcelFileFolder = Environment.CurrentDirectory;
             ExportFolder = Environment.CurrentDirectory + "\\Export\\";
-            ExportSQLiteDB = true;
+            CreateSQLiteDB = true;
             SQLiteDBFileOption = EExportFileOption.SingleFile;
 
-            ExportMySQLScheme = false;
-            ExportMSSQLScheme = false;
-            ExportInsertData = false;
+            CreateMySQLScheme = false;
+            CreateMSSQLScheme = false;
+            CreateDataInsertScript = false;
             DatabaseScriptFileOption = EExportFileOption.SingleFile;
 
             UseNamespace = false;
-            NamespaceData = string.Empty;
+            NamespaceString = string.Empty;
             ExportCSSourceCode = false;
             ExportCPPSourceCode = false;
 
