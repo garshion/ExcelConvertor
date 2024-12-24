@@ -31,38 +31,39 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtExcelFolder = new System.Windows.Forms.TextBox();
-            this.btnBrowser = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBrowseExcelFileFolder = new System.Windows.Forms.Button();
+            this.btnExcelFileFolderOpen = new System.Windows.Forms.Button();
             this.checkedListExistsExcelFiles = new System.Windows.Forms.CheckedListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnOpenExportFolder = new System.Windows.Forms.Button();
+            this.btnBrowseExportFolder = new System.Windows.Forms.Button();
+            this.txtExportFolder = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnExcelFileListRefresh = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.checkCreateSQLiteDB = new System.Windows.Forms.CheckBox();
+            this.radioSQLiteDBFileExportSingle = new System.Windows.Forms.RadioButton();
+            this.radioSQLiteDBFileExportEachFile = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.checkCreateMySQLScheme = new System.Windows.Forms.CheckBox();
+            this.checkCreateMSSQLScheme = new System.Windows.Forms.CheckBox();
+            this.checkCreateDataInsertScript = new System.Windows.Forms.CheckBox();
+            this.radioDBScriptFileExportEachFile = new System.Windows.Forms.RadioButton();
+            this.radioDBScriptFileExportSingle = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioUseStruct = new System.Windows.Forms.RadioButton();
+            this.radioUseClass = new System.Windows.Forms.RadioButton();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button5 = new System.Windows.Forms.Button();
+            this.radioSourceCodeFileExportEachFile = new System.Windows.Forms.RadioButton();
+            this.radioSourceCodeFileExportSingle = new System.Windows.Forms.RadioButton();
+            this.progressWork = new System.Windows.Forms.ProgressBar();
+            this.btnConvert = new System.Windows.Forms.Button();
+            this.btnShowLog = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -73,11 +74,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.btnExcelFileListRefresh);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.checkedListExistsExcelFiles);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.btnBrowser);
+            this.groupBox1.Controls.Add(this.btnExcelFileFolderOpen);
+            this.groupBox1.Controls.Add(this.btnBrowseExcelFileFolder);
             this.groupBox1.Controls.Add(this.txtExcelFolder);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -104,23 +105,23 @@
             this.txtExcelFolder.Size = new System.Drawing.Size(595, 25);
             this.txtExcelFolder.TabIndex = 1;
             // 
-            // btnBrowser
+            // btnBrowseExcelFileFolder
             // 
-            this.btnBrowser.Location = new System.Drawing.Point(494, 80);
-            this.btnBrowser.Name = "btnBrowser";
-            this.btnBrowser.Size = new System.Drawing.Size(110, 23);
-            this.btnBrowser.TabIndex = 2;
-            this.btnBrowser.Text = "Browse..";
-            this.btnBrowser.UseVisualStyleBackColor = true;
+            this.btnBrowseExcelFileFolder.Location = new System.Drawing.Point(494, 80);
+            this.btnBrowseExcelFileFolder.Name = "btnBrowseExcelFileFolder";
+            this.btnBrowseExcelFileFolder.Size = new System.Drawing.Size(110, 23);
+            this.btnBrowseExcelFileFolder.TabIndex = 2;
+            this.btnBrowseExcelFileFolder.Text = "Browse..";
+            this.btnBrowseExcelFileFolder.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnExcelFileFolderOpen
             // 
-            this.button1.Location = new System.Drawing.Point(378, 80);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Open Folder";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnExcelFileFolderOpen.Location = new System.Drawing.Point(378, 80);
+            this.btnExcelFileFolderOpen.Name = "btnExcelFileFolderOpen";
+            this.btnExcelFileFolderOpen.Size = new System.Drawing.Size(110, 23);
+            this.btnExcelFileFolderOpen.TabIndex = 3;
+            this.btnExcelFileFolderOpen.Text = "Open Folder";
+            this.btnExcelFileFolderOpen.UseVisualStyleBackColor = true;
             // 
             // checkedListExistsExcelFiles
             // 
@@ -132,9 +133,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.btnOpenExportFolder);
+            this.groupBox2.Controls.Add(this.btnBrowseExportFolder);
+            this.groupBox2.Controls.Add(this.txtExportFolder);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(642, 12);
             this.groupBox2.Name = "groupBox2";
@@ -143,30 +144,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Export";
             // 
-            // button2
+            // btnOpenExportFolder
             // 
-            this.button2.Location = new System.Drawing.Point(378, 80);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Open Folder";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnOpenExportFolder.Location = new System.Drawing.Point(378, 80);
+            this.btnOpenExportFolder.Name = "btnOpenExportFolder";
+            this.btnOpenExportFolder.Size = new System.Drawing.Size(110, 23);
+            this.btnOpenExportFolder.TabIndex = 3;
+            this.btnOpenExportFolder.Text = "Open Folder";
+            this.btnOpenExportFolder.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnBrowseExportFolder
             // 
-            this.button3.Location = new System.Drawing.Point(494, 80);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Browse..";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnBrowseExportFolder.Location = new System.Drawing.Point(494, 80);
+            this.btnBrowseExportFolder.Name = "btnBrowseExportFolder";
+            this.btnBrowseExportFolder.Size = new System.Drawing.Size(110, 23);
+            this.btnBrowseExportFolder.TabIndex = 2;
+            this.btnBrowseExportFolder.Text = "Browse..";
+            this.btnBrowseExportFolder.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtExportFolder
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(595, 25);
-            this.textBox1.TabIndex = 1;
+            this.txtExportFolder.Location = new System.Drawing.Point(9, 49);
+            this.txtExportFolder.Name = "txtExportFolder";
+            this.txtExportFolder.Size = new System.Drawing.Size(595, 25);
+            this.txtExportFolder.TabIndex = 1;
             // 
             // label2
             // 
@@ -186,20 +187,20 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Excel Files to Convert";
             // 
-            // button4
+            // btnExcelFileListRefresh
             // 
-            this.button4.Location = new System.Drawing.Point(262, 80);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(110, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Refresh";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnExcelFileListRefresh.Location = new System.Drawing.Point(262, 80);
+            this.btnExcelFileListRefresh.Name = "btnExcelFileListRefresh";
+            this.btnExcelFileListRefresh.Size = new System.Drawing.Size(110, 23);
+            this.btnExcelFileListRefresh.TabIndex = 6;
+            this.btnExcelFileListRefresh.Text = "Refresh";
+            this.btnExcelFileListRefresh.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.checkBox1);
+            this.groupBox3.Controls.Add(this.radioSQLiteDBFileExportEachFile);
+            this.groupBox3.Controls.Add(this.radioSQLiteDBFileExportSingle);
+            this.groupBox3.Controls.Add(this.checkCreateSQLiteDB);
             this.groupBox3.Location = new System.Drawing.Point(642, 178);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(300, 156);
@@ -207,47 +208,47 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SQLite Database Option";
             // 
-            // checkBox1
+            // checkCreateSQLiteDB
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(9, 24);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(143, 19);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Create SQLite DB";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkCreateSQLiteDB.AutoSize = true;
+            this.checkCreateSQLiteDB.Checked = true;
+            this.checkCreateSQLiteDB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkCreateSQLiteDB.Location = new System.Drawing.Point(9, 24);
+            this.checkCreateSQLiteDB.Name = "checkCreateSQLiteDB";
+            this.checkCreateSQLiteDB.Size = new System.Drawing.Size(143, 19);
+            this.checkCreateSQLiteDB.TabIndex = 0;
+            this.checkCreateSQLiteDB.Text = "Create SQLite DB";
+            this.checkCreateSQLiteDB.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioSQLiteDBFileExportSingle
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(9, 99);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(92, 19);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Single File";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioSQLiteDBFileExportSingle.AutoSize = true;
+            this.radioSQLiteDBFileExportSingle.Checked = true;
+            this.radioSQLiteDBFileExportSingle.Location = new System.Drawing.Point(9, 99);
+            this.radioSQLiteDBFileExportSingle.Name = "radioSQLiteDBFileExportSingle";
+            this.radioSQLiteDBFileExportSingle.Size = new System.Drawing.Size(92, 19);
+            this.radioSQLiteDBFileExportSingle.TabIndex = 1;
+            this.radioSQLiteDBFileExportSingle.TabStop = true;
+            this.radioSQLiteDBFileExportSingle.Text = "Single File";
+            this.radioSQLiteDBFileExportSingle.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioSQLiteDBFileExportEachFile
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(9, 124);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(128, 19);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.Text = "Each Sheet File";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioSQLiteDBFileExportEachFile.AutoSize = true;
+            this.radioSQLiteDBFileExportEachFile.Location = new System.Drawing.Point(9, 124);
+            this.radioSQLiteDBFileExportEachFile.Name = "radioSQLiteDBFileExportEachFile";
+            this.radioSQLiteDBFileExportEachFile.Size = new System.Drawing.Size(128, 19);
+            this.radioSQLiteDBFileExportEachFile.TabIndex = 2;
+            this.radioSQLiteDBFileExportEachFile.Text = "Each Sheet File";
+            this.radioSQLiteDBFileExportEachFile.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.radioButton3);
-            this.groupBox4.Controls.Add(this.radioButton4);
-            this.groupBox4.Controls.Add(this.checkBox4);
-            this.groupBox4.Controls.Add(this.checkBox3);
-            this.groupBox4.Controls.Add(this.checkBox2);
+            this.groupBox4.Controls.Add(this.radioDBScriptFileExportEachFile);
+            this.groupBox4.Controls.Add(this.radioDBScriptFileExportSingle);
+            this.groupBox4.Controls.Add(this.checkCreateDataInsertScript);
+            this.groupBox4.Controls.Add(this.checkCreateMSSQLScheme);
+            this.groupBox4.Controls.Add(this.checkCreateMySQLScheme);
             this.groupBox4.Location = new System.Drawing.Point(952, 178);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(300, 156);
@@ -255,62 +256,62 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Database Scripts Option";
             // 
-            // checkBox2
+            // checkCreateMySQLScheme
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(9, 24);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(181, 19);
-            this.checkBox2.TabIndex = 0;
-            this.checkBox2.Text = "Create MySQL Scheme";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkCreateMySQLScheme.AutoSize = true;
+            this.checkCreateMySQLScheme.Location = new System.Drawing.Point(9, 24);
+            this.checkCreateMySQLScheme.Name = "checkCreateMySQLScheme";
+            this.checkCreateMySQLScheme.Size = new System.Drawing.Size(181, 19);
+            this.checkCreateMySQLScheme.TabIndex = 0;
+            this.checkCreateMySQLScheme.Text = "Create MySQL Scheme";
+            this.checkCreateMySQLScheme.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // checkCreateMSSQLScheme
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(9, 49);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(183, 19);
-            this.checkBox3.TabIndex = 1;
-            this.checkBox3.Text = "Create MSSQL Scheme";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkCreateMSSQLScheme.AutoSize = true;
+            this.checkCreateMSSQLScheme.Location = new System.Drawing.Point(9, 49);
+            this.checkCreateMSSQLScheme.Name = "checkCreateMSSQLScheme";
+            this.checkCreateMSSQLScheme.Size = new System.Drawing.Size(183, 19);
+            this.checkCreateMSSQLScheme.TabIndex = 1;
+            this.checkCreateMSSQLScheme.Text = "Create MSSQL Scheme";
+            this.checkCreateMSSQLScheme.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // checkCreateDataInsertScript
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(9, 74);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(185, 19);
-            this.checkBox4.TabIndex = 2;
-            this.checkBox4.Text = "Create Data Insert Script";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkCreateDataInsertScript.AutoSize = true;
+            this.checkCreateDataInsertScript.Location = new System.Drawing.Point(9, 74);
+            this.checkCreateDataInsertScript.Name = "checkCreateDataInsertScript";
+            this.checkCreateDataInsertScript.Size = new System.Drawing.Size(185, 19);
+            this.checkCreateDataInsertScript.TabIndex = 2;
+            this.checkCreateDataInsertScript.Text = "Create Data Insert Script";
+            this.checkCreateDataInsertScript.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioDBScriptFileExportEachFile
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(9, 124);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(128, 19);
-            this.radioButton3.TabIndex = 4;
-            this.radioButton3.Text = "Each Sheet File";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioDBScriptFileExportEachFile.AutoSize = true;
+            this.radioDBScriptFileExportEachFile.Location = new System.Drawing.Point(9, 124);
+            this.radioDBScriptFileExportEachFile.Name = "radioDBScriptFileExportEachFile";
+            this.radioDBScriptFileExportEachFile.Size = new System.Drawing.Size(128, 19);
+            this.radioDBScriptFileExportEachFile.TabIndex = 4;
+            this.radioDBScriptFileExportEachFile.Text = "Each Sheet File";
+            this.radioDBScriptFileExportEachFile.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // radioDBScriptFileExportSingle
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Location = new System.Drawing.Point(9, 99);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(92, 19);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Single File";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioDBScriptFileExportSingle.AutoSize = true;
+            this.radioDBScriptFileExportSingle.Checked = true;
+            this.radioDBScriptFileExportSingle.Location = new System.Drawing.Point(9, 99);
+            this.radioDBScriptFileExportSingle.Name = "radioDBScriptFileExportSingle";
+            this.radioDBScriptFileExportSingle.Size = new System.Drawing.Size(92, 19);
+            this.radioDBScriptFileExportSingle.TabIndex = 3;
+            this.radioDBScriptFileExportSingle.TabStop = true;
+            this.radioDBScriptFileExportSingle.Text = "Single File";
+            this.radioDBScriptFileExportSingle.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.radioButton7);
-            this.groupBox5.Controls.Add(this.radioButton8);
+            this.groupBox5.Controls.Add(this.radioSourceCodeFileExportEachFile);
+            this.groupBox5.Controls.Add(this.radioSourceCodeFileExportSingle);
             this.groupBox5.Controls.Add(this.checkBox7);
             this.groupBox5.Controls.Add(this.groupBox6);
             this.groupBox5.Controls.Add(this.checkBox6);
@@ -352,8 +353,8 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.radioButton6);
-            this.groupBox6.Controls.Add(this.radioButton5);
+            this.groupBox6.Controls.Add(this.radioUseClass);
+            this.groupBox6.Controls.Add(this.radioUseStruct);
             this.groupBox6.Location = new System.Drawing.Point(310, 93);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(294, 82);
@@ -361,27 +362,27 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Data Option";
             // 
-            // radioButton5
+            // radioUseStruct
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(9, 24);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(94, 19);
-            this.radioButton5.TabIndex = 0;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Use Struct";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioUseStruct.AutoSize = true;
+            this.radioUseStruct.Location = new System.Drawing.Point(9, 24);
+            this.radioUseStruct.Name = "radioUseStruct";
+            this.radioUseStruct.Size = new System.Drawing.Size(94, 19);
+            this.radioUseStruct.TabIndex = 0;
+            this.radioUseStruct.Text = "Use Struct";
+            this.radioUseStruct.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // radioUseClass
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(9, 49);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(93, 19);
-            this.radioButton6.TabIndex = 1;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Use Class";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioUseClass.AutoSize = true;
+            this.radioUseClass.Checked = true;
+            this.radioUseClass.Location = new System.Drawing.Point(9, 49);
+            this.radioUseClass.Name = "radioUseClass";
+            this.radioUseClass.Size = new System.Drawing.Size(93, 19);
+            this.radioUseClass.TabIndex = 1;
+            this.radioUseClass.TabStop = true;
+            this.radioUseClass.Text = "Use Class";
+            this.radioUseClass.UseVisualStyleBackColor = true;
             // 
             // checkBox7
             // 
@@ -393,51 +394,61 @@
             this.checkBox7.Text = "Create C++ Source Code";
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
-            // radioButton7
+            // radioSourceCodeFileExportEachFile
             // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(9, 156);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(128, 19);
-            this.radioButton7.TabIndex = 6;
-            this.radioButton7.Text = "Each Sheet File";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.radioSourceCodeFileExportEachFile.AutoSize = true;
+            this.radioSourceCodeFileExportEachFile.Location = new System.Drawing.Point(9, 156);
+            this.radioSourceCodeFileExportEachFile.Name = "radioSourceCodeFileExportEachFile";
+            this.radioSourceCodeFileExportEachFile.Size = new System.Drawing.Size(128, 19);
+            this.radioSourceCodeFileExportEachFile.TabIndex = 6;
+            this.radioSourceCodeFileExportEachFile.Text = "Each Sheet File";
+            this.radioSourceCodeFileExportEachFile.UseVisualStyleBackColor = true;
             // 
-            // radioButton8
+            // radioSourceCodeFileExportSingle
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Checked = true;
-            this.radioButton8.Location = new System.Drawing.Point(9, 131);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(92, 19);
-            this.radioButton8.TabIndex = 5;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "Single File";
-            this.radioButton8.UseVisualStyleBackColor = true;
+            this.radioSourceCodeFileExportSingle.AutoSize = true;
+            this.radioSourceCodeFileExportSingle.Checked = true;
+            this.radioSourceCodeFileExportSingle.Location = new System.Drawing.Point(9, 131);
+            this.radioSourceCodeFileExportSingle.Name = "radioSourceCodeFileExportSingle";
+            this.radioSourceCodeFileExportSingle.Size = new System.Drawing.Size(92, 19);
+            this.radioSourceCodeFileExportSingle.TabIndex = 5;
+            this.radioSourceCodeFileExportSingle.TabStop = true;
+            this.radioSourceCodeFileExportSingle.Text = "Single File";
+            this.radioSourceCodeFileExportSingle.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
+            // progressWork
             // 
-            this.progressBar1.Location = new System.Drawing.Point(628, 642);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(624, 23);
-            this.progressBar1.TabIndex = 9;
+            this.progressWork.Location = new System.Drawing.Point(642, 642);
+            this.progressWork.Name = "progressWork";
+            this.progressWork.Size = new System.Drawing.Size(610, 23);
+            this.progressWork.TabIndex = 9;
             // 
-            // button5
+            // btnConvert
             // 
-            this.button5.Location = new System.Drawing.Point(961, 566);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(291, 70);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "Convert";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnConvert.Location = new System.Drawing.Point(961, 566);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Size = new System.Drawing.Size(291, 70);
+            this.btnConvert.TabIndex = 10;
+            this.btnConvert.Text = "Convert";
+            this.btnConvert.UseVisualStyleBackColor = true;
+            // 
+            // btnShowLog
+            // 
+            this.btnShowLog.Location = new System.Drawing.Point(642, 566);
+            this.btnShowLog.Name = "btnShowLog";
+            this.btnShowLog.Size = new System.Drawing.Size(291, 70);
+            this.btnShowLog.TabIndex = 11;
+            this.btnShowLog.Text = "Show Log";
+            this.btnShowLog.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.btnShowLog);
+            this.Controls.Add(this.btnConvert);
+            this.Controls.Add(this.progressWork);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -469,37 +480,38 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox checkedListExistsExcelFiles;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnBrowser;
+        private System.Windows.Forms.Button btnExcelFileFolderOpen;
+        private System.Windows.Forms.Button btnBrowseExcelFileFolder;
         private System.Windows.Forms.TextBox txtExcelFolder;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnOpenExportFolder;
+        private System.Windows.Forms.Button btnBrowseExportFolder;
+        private System.Windows.Forms.TextBox txtExportFolder;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnExcelFileListRefresh;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.RadioButton radioSQLiteDBFileExportEachFile;
+        private System.Windows.Forms.RadioButton radioSQLiteDBFileExportSingle;
+        private System.Windows.Forms.CheckBox checkCreateSQLiteDB;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.RadioButton radioDBScriptFileExportEachFile;
+        private System.Windows.Forms.RadioButton radioDBScriptFileExportSingle;
+        private System.Windows.Forms.CheckBox checkCreateDataInsertScript;
+        private System.Windows.Forms.CheckBox checkCreateMSSQLScheme;
+        private System.Windows.Forms.CheckBox checkCreateMySQLScheme;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioUseClass;
+        private System.Windows.Forms.RadioButton radioUseStruct;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.RadioButton radioSourceCodeFileExportEachFile;
+        private System.Windows.Forms.RadioButton radioSourceCodeFileExportSingle;
+        private System.Windows.Forms.ProgressBar progressWork;
+        private System.Windows.Forms.Button btnConvert;
+        private System.Windows.Forms.Button btnShowLog;
     }
 }
