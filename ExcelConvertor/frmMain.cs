@@ -7,9 +7,10 @@ namespace Bass.Tools.ExcelConvertor
 {
     public partial class frmMain : Form
     {
-
-
         private bool mSettingLock = false;
+
+        private bool mAllControlEnable = true;
+
 
 
 
@@ -65,7 +66,111 @@ namespace Bass.Tools.ExcelConvertor
         #endregion
 
 
+        #region Form Control Enable/Disable
 
+        private void _ApplyControlEnable(bool enable)
+        {
+            if (mAllControlEnable == enable)
+                return;
+
+            mAllControlEnable = enable;
+
+            txtExcelFileFolder.Enabled = enable;
+            txtExportFolder.Enabled = enable;
+            btnBrowseExcelFileFolder.Enabled = enable;
+            btnBrowseExportFolder.Enabled = enable;
+            btnExcelFileFolderOpen.Enabled = enable;
+            btnExcelFileListRefresh.Enabled = enable;
+            btnExcelSelectAll.Enabled = enable;
+            btnExcelDeselectAll.Enabled = enable;
+            btnOpenExportFolder.Enabled = enable;
+            btnShowLog.Enabled = enable;
+            btnConvert.Enabled = enable;
+            checkCreateSQLiteDB.Enabled = enable;
+            checkCreateMySQLScheme.Enabled = enable;
+            checkCreateMSSQLScheme.Enabled = enable;
+            checkCreateDataInsertScript.Enabled = enable;
+            checkUseNamespace.Enabled = enable;
+            checkExportCSSource.Enabled = enable;
+            checkExportCPPSource.Enabled = enable;
+            radioSQLiteDBFileExportSingle.Enabled = enable;
+            radioSQLiteDBFileExportEachFile.Enabled = enable;
+            radioDBScriptFileExportSingle.Enabled = enable;
+            radioDBScriptFileExportEachFile.Enabled = enable;
+            radioSourceCodeFileExportSingle.Enabled = enable;
+            radioSourceCodeFileExportEachFile.Enabled = enable;
+            radioUseClass.Enabled = enable;
+            radioUseStruct.Enabled = enable;
+            txtNamespaceString.Enabled = enable;
+
+            if (enable)
+                _UpdateControlEnable();
+        }
+
+        private void _UpdateControlEnable()
+        {
+            if (!mAllControlEnable)
+                return;
+
+            // SQLite Database Option
+            if (checkCreateSQLiteDB.Checked)
+            {
+                radioSQLiteDBFileExportSingle.Enabled = true;
+                radioSQLiteDBFileExportEachFile.Enabled = true;
+            }
+            else
+            {
+                radioSQLiteDBFileExportSingle.Enabled = false;
+                radioSQLiteDBFileExportEachFile.Enabled = false;
+            }
+
+            // Database Script Option
+            if (checkCreateMySQLScheme.Checked
+                || checkCreateMSSQLScheme.Checked
+                || checkCreateDataInsertScript.Checked)
+            {
+                radioDBScriptFileExportSingle.Enabled = true;
+                radioDBScriptFileExportEachFile.Enabled = true;
+            }
+            else
+            {
+                radioDBScriptFileExportSingle.Enabled = false;
+                radioDBScriptFileExportEachFile.Enabled = false;
+            }
+
+            // Namespace Option
+            if (checkUseNamespace.Checked)
+            {
+                txtNamespaceString.Enabled = true;
+            }
+            else
+            {
+                txtNamespaceString.Enabled = false;
+            }
+
+            if (checkExportCPPSource.Checked
+                || checkExportCSSource.Checked)
+            {
+                radioSourceCodeFileExportSingle.Enabled = true;
+                radioSourceCodeFileExportEachFile.Enabled = true;
+
+                radioUseClass.Enabled = true;
+                radioUseStruct.Enabled = true;
+            }
+            else
+            {
+                radioSourceCodeFileExportSingle.Enabled = false;
+                radioSourceCodeFileExportEachFile.Enabled = false;
+
+                radioUseClass.Enabled = false;
+                radioUseStruct.Enabled = false;
+            }
+
+        }
+
+
+
+        #endregion
 
 
 
@@ -154,6 +259,8 @@ namespace Bass.Tools.ExcelConvertor
             ConfigManager.Save();
 
             mSettingLock = false;
+
+            _UpdateControlEnable();
         }
 
         #endregion
