@@ -81,8 +81,8 @@ namespace Bass.Tools.Core
                 case EDataType.Date:
                 case EDataType.DateTime:
                     {
-                        if (string.IsNullOrEmpty(colunmData))
-                            return true;    // MinValue
+                        //if (string.IsNullOrEmpty(colunmData))
+                        //    return true;    // MinValue
                         return DateTime.TryParse(colunmData, out var _);
                     }
                 default:

@@ -1,6 +1,8 @@
 ﻿using Bass.Tools.Common;
+using Bass.Tools.ExcelConvertor.Common;
 using Bass.Tools.Log;
 using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 
 namespace Bass.Tools.Core
@@ -243,9 +245,23 @@ namespace Bass.Tools.Core
                     else
                     {
                         cellData = cell.Value.ToString();
+
+                        switch (header.DataType.Type)
+                        {
+                            case EDataType.DateTime:
+                            case EDataType.Date:
+                                if (!header.IsValidColumnData(cell.Value.ToString()))
+                                {
+                                    // datetime 타입인데 여기로 왔다면, 잘못된 데이터. 최소값으로 설정.
+                                    Logger.Log($"Invalid DateTime Value. Set Default. Sheet ({SheetName}) Row ({row}) Column ({header.ColumnName}/{header.ColumnIndex}) Value : {cell.Value.ToString()}");
+                                    cellData = DateTime.MinValue.ToString("yyyy-MM-dd HH:mm:ss");
+                                }
+                                break;
+                            default:
+                                break;
+                        }
                     }
 
-                    //var cellData = sheet.Cell(row, header.ColumnIndex).Value.ToString();
                     if (!header.IsValidColumnData(cellData))
                     {
                         Logger.Log($"Read Data - Invalid Data Type. Sheet ({SheetName}) Row ({row}) Column ({header.ColumnName}/{header.ColumnIndex})");
