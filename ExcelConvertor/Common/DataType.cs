@@ -21,7 +21,7 @@ namespace Bass.Tools.ExcelConvertor.Common
             Size = size;
         }
 
-        
+
         public bool IsSame(DataType other)
         {
             if (null == other)
@@ -34,6 +34,39 @@ namespace Bass.Tools.ExcelConvertor.Common
             return true;
         }
 
+        public string GetTypeString(ETargetType type)
+        {
+            switch (Type)
+            {
+                case EDataType.String:
+                    {
+                        switch (type)
+                        {
+                            case ETargetType.MSSQL:
+                                {
+                                    if (Size <= 0)
+                                        return "NVARCHAR(MAX)";
+                                    else
+                                        return $"NVARCHAR({Size})";
+                                }
+                            case ETargetType.MySQL:
+                                {
+                                    if (Size <= 0)
+                                        return "TEXT";
+                                    else
+                                        return $"VARCHAR({Size})";
+                                }
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return Type.ToTargetDataType(type);
+        }
 
 
     }

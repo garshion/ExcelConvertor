@@ -161,7 +161,7 @@ namespace Bass.Tools.Core.Programming
 
             foreach (var header in data.HeaderInfo)
             {
-                sb.AppendLine($"{_GetDepth()}public {header.DataType.Type.ToTargetDataType(ETargetType.CSharp)} {header.ColumnName} {{ get; set; }} = {header.DataType.Type.GetProgrammingDefaultValue(ETargetType.CSharp)};");
+                sb.AppendLine($"{_GetDepth()}public {header.DataType.GetTypeString(ETargetType.CSharp)} {header.ColumnName} {{ get; set; }} = {header.DataType.Type.GetProgrammingDefaultValue(ETargetType.CSharp)};");
             }
 
             mDepth--;
@@ -257,7 +257,7 @@ namespace Bass.Tools.Core.Programming
 
             foreach (var header in data.HeaderInfo)
             {
-                sb.AppendLine($"{_GetDepth()}{header.DataType.Type.ToTargetDataType(ETargetType.CPlusPlus)} {header.ColumnName} = {header.DataType.Type.GetProgrammingDefaultValue(ETargetType.CPlusPlus)};");
+                sb.AppendLine($"{_GetDepth()}{header.DataType.GetTypeString(ETargetType.CPlusPlus)} {header.ColumnName} = {header.DataType.Type.GetProgrammingDefaultValue(ETargetType.CPlusPlus)};");
             }
 
             mDepth--;

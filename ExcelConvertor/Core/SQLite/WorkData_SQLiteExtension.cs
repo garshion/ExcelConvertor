@@ -49,7 +49,7 @@ namespace Bass.Tools.Core.SQLite
 
                 sb.Append(header.ColumnName);
                 sb.Append(" ");
-                sb.Append(header.DataType.Type.ToTargetDataType(ETargetType.SQLite));
+                sb.Append(header.DataType.GetTypeString(ETargetType.SQLite));
             }
 
             // Primary Key Setting
@@ -96,7 +96,7 @@ namespace Bass.Tools.Core.SQLite
             }
 
             sb.Append(") VALUES (");
-            
+
             bFirst = true;
             foreach (var header in data.HeaderInfo)
             {
