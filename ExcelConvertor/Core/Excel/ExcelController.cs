@@ -17,12 +17,15 @@ namespace Bass.Tools.Core.Excel
         public Dictionary<string, WorkData> ExcelSheetDatas { get; set; } = new Dictionary<string, WorkData>();
 
 
+        public void Reset()
+        {
+            foreach(var data in ExcelSheetDatas.Values)
+            {
+                data.Reset();
+            }
 
-        // 시트별로 읽고....
-        // 같은 시트 데이터가 있는지 검사
-        // 있으면 데이터 타입 검사
-        // 데이터 타입이 다르면 에러 방출하고
-        // 데이터 같으면 머지
+            ExcelSheetDatas.Clear();
+        }
 
 
         public bool ReadFile(string fileName)

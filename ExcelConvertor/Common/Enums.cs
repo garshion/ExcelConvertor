@@ -164,6 +164,65 @@ namespace Bass.Tools.ExcelConvertor.Common
         }
 
 
+        public static string GetProgrammingDefaultValue(this EDataType type, ETargetType target)
+        {
+            switch (target)
+            {
+                case ETargetType.CSharp:
+                case ETargetType.CPlusPlus:
+                    break;
+                default:
+                    return string.Empty;
+            }
+
+            switch (type)
+            {
+                case EDataType.Int8:
+                case EDataType.Int16:
+                case EDataType.Int32:
+                case EDataType.Int64:
+                    return "0";
+                case EDataType.Float:
+                    return "0.0f";
+                case EDataType.Double:
+                    return "0.0";
+                case EDataType.Bool:
+                    return "false";
+                case EDataType.String:
+                    {
+                        switch (target)
+                        {
+                            case ETargetType.CSharp:
+                                return "string.Empty";
+                            case ETargetType.CPlusPlus:
+                                return "std::string()";
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case EDataType.DateTime:
+                case EDataType.Date:
+                    {
+                        switch (target)
+                        {
+                            case ETargetType.CSharp:
+                                return "DateTime.MinValue";
+                            case ETargetType.CPlusPlus:
+                                return "std::string()";
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return string.Empty;
+        }
+
+
         /// <summary>
         /// 데이터 타입을 대상 타입에 맞는 자료형 문자열로 변환합니다.
         /// </summary>

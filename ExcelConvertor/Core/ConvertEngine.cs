@@ -40,6 +40,8 @@ namespace Bass.Tools.Core
                 return false;
             }
 
+            mExcelController.Reset();
+
             // Read Excel File And Combine Data.
             if(!_ReadExcelFiles())
             {
@@ -68,6 +70,8 @@ namespace Bass.Tools.Core
                 Logger.Log("Programming Process Error.");
             }
 
+
+            GC.Collect();
             return true;
         }
 
