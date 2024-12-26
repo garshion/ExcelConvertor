@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bass.Tools.Core.SQLite
 {
-    public static class WorkData_SQLiteExtension
+    public static class SQLiteControllerUtil
     {
 
         /// <summary>
@@ -23,6 +23,7 @@ namespace Bass.Tools.Core.SQLite
 
             if (data.HeaderInfo.Count == 0)
                 return string.Empty;
+
             StringBuilder sb = new StringBuilder();
             sb.Append($"CREATE TABLE IF NOT EXISTS {data.SheetName} (");
 
@@ -114,10 +115,6 @@ namespace Bass.Tools.Core.SQLite
             sb.Append(");");
             return sb.ToString();
         }
-
-
-
-
 
     }
 }

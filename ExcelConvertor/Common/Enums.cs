@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace Bass.Tools.ExcelConvertor.Common
 {
     /// <summary>
-    /// 프로그램에서 사용하는 데이터 타입
+    /// 데이터 처리에 사용되는 데이터 타입. <br/>
+    /// Data type used for data processing.<br/>
     /// </summary>
     public enum EDataType : int
     {
@@ -18,18 +14,23 @@ namespace Bass.Tools.ExcelConvertor.Common
         Int16,
         Int32,
         Int64,
+
         Float,
         Double,
+
         String,
+
         DateTime,
         Date,
+
         Bool,
 
         Max,
     }
 
     /// <summary>
-    /// 출력 타겟 종류
+    /// 출력 대상 종류. <br/>
+    /// Export Target Type <br/>
     /// </summary>
     public enum ETargetType : int
     {
@@ -43,10 +44,6 @@ namespace Bass.Tools.ExcelConvertor.Common
 
         Max,
     }
-
-
-
-
 
 
     public static class Enums_Extension
@@ -72,7 +69,6 @@ namespace Bass.Tools.ExcelConvertor.Common
             }
         }
 
-
         public static bool IsValid(this ETargetType type)
         {
             switch (type)
@@ -89,7 +85,26 @@ namespace Bass.Tools.ExcelConvertor.Common
         }
 
         /// <summary>
-        /// Excel 에 정의된 타입으로무터 변환할 타입과 크기를 가져옵니다.
+        /// 대상이 프로그래밍 언어 타입인지 확인합니다. <br/>
+        /// Checks if the target is a programming language type. <br/>
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsProgrammingLanguageType(this ETargetType type)
+        {
+            switch (type)
+            {
+                case ETargetType.CSharp:
+                case ETargetType.CPlusPlus:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Excel 에 정의된 타입으로부터 변환할 타입과 크기를 가져옵니다. <br/>
+        /// Gets the type and size to convert from a type defined in Excel. <br/>
         /// </summary>
         /// <param name="strType"></param>
         /// <returns></returns>
@@ -124,9 +139,9 @@ namespace Bass.Tools.ExcelConvertor.Common
                 case "text":
                     return new DataType(EDataType.String, 0);
                 case "datetime":
-                    return new DataType(EDataType.DateTime, 22);    // YYYY-MM-DD HH:MM:SS.SSS
+                    return new DataType(EDataType.DateTime, 22);    // YYYY-MM-DD HH:MM:SS.SSS 
                 case "date":
-                    return new DataType(EDataType.Date, 10);    // YYYY-MM-DD
+                    return new DataType(EDataType.Date, 10);        // YYYY-MM-DD
                 case "bool":
                 case "boolean":
                 case "bit":
@@ -135,45 +150,44 @@ namespace Bass.Tools.ExcelConvertor.Common
                     break;
             }
 
-            // nvarchar(10) varchar(20) 형태의 문자열인 경우
+            // varchar pattern like nvarchar(10) varchar(20).
             string pattern = @"(n?varchar)\((\d+)\)";
             var match = Regex.Match(strType, pattern);
+
             if (match.Success)
             {
                 try
                 {
+                    // ex) group[0] : varchar(10), group[1] : varchar, group[2] : 10
                     string num = match.Groups[2].Value;
 
-                    // 숫자가 아닌 경우
                     if (!int.TryParse(num, out int size))
-                        return new DataType();
+                        return new DataType(); // invalid data type
 
-                    // 비정상 크기
                     if (size <= 0)
-                        return new DataType();
+                        return new DataType(); // invalid size data
 
                     return new DataType(EDataType.String, size);
                 }
                 catch
                 {
-                    // 오류 발생시 아래에서 처리
                 }
             }
 
-            return new DataType();
+            return new DataType();  // invalid data type
         }
 
-
+        /// <summary>
+        /// 해당 타입에 해당되는 프로그래밍 언어 타입의 기본값을 가져옵니다. <br/>
+        /// Gets the default value for the programming language type corresponding to the type. <br/>
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static string GetProgrammingDefaultValue(this EDataType type, ETargetType target)
         {
-            switch (target)
-            {
-                case ETargetType.CSharp:
-                case ETargetType.CPlusPlus:
-                    break;
-                default:
-                    return string.Empty;
-            }
+            if (!target.IsProgrammingLanguageType())
+                return string.Empty;    // Not Programming Language Type
 
             switch (type)
             {
@@ -219,12 +233,13 @@ namespace Bass.Tools.ExcelConvertor.Common
                     break;
             }
 
-            return string.Empty;
+            return string.Empty;    // Invalid type
         }
 
 
         /// <summary>
-        /// 데이터 타입을 대상 타입에 맞는 자료형 문자열로 변환합니다.
+        /// 대상에 적합한 데이터 유형 문자열로 대상 유형을 변환합니다. <br/>
+        /// Converts the type to a string of the appropriate data type for the target.<br/>
         /// </summary>
         /// <param name="type"></param>
         /// <param name="target"></param>
@@ -385,7 +400,7 @@ namespace Bass.Tools.ExcelConvertor.Common
                     break;
             }
 
-            return string.Empty;
+            return string.Empty;    // invalid target or type
         }
 
     }

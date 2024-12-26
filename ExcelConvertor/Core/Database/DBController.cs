@@ -1,15 +1,12 @@
 ﻿using Bass.Tools.Config;
 using Bass.Tools.ExcelConvertor.Common;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Bass.Tools.Core.Database
 {
-    public class DBController
+    public class DBController : AWorkController
     {
         private const string MYSQL_EXPORT_FOLDER = "MySQL";
         private const string MSSQL_EXPORT_FOLDER = "MSSQL";
@@ -17,7 +14,7 @@ namespace Bass.Tools.Core.Database
 
         private const int MAX_INSERT_AT_ONCE = 1000;
 
-        public bool Process(List<WorkData> datas)
+        public override bool Process(List<WorkData> datas)
         {
 
             if (ConfigManager.Setting.CreateMySQLScheme)
@@ -32,17 +29,6 @@ namespace Bass.Tools.Core.Database
 
             return true;
         }
-
-        private void _CheckFolder(string folderName)
-        {
-            if (string.IsNullOrWhiteSpace(folderName))
-                return;
-            string exportFolder = Path.Combine(ConfigManager.Setting.ExportFolder, folderName);
-            if (!Directory.Exists(exportFolder))
-                Directory.CreateDirectory(exportFolder);
-        }
-
-
 
         private void _Process(List<WorkData> datas, ETargetType type)
         {
@@ -63,8 +49,8 @@ namespace Bass.Tools.Core.Database
                     return; // Invalid Type.
             }
 
-            _CheckFolder(exportFolder);
-
+            CheckExportFolder(exportFolder);
+            RemoveFiles(exportFolder);
 
             StringBuilder sb = new StringBuilder();
             foreach (var data in datas)
@@ -121,7 +107,7 @@ namespace Bass.Tools.Core.Database
                 else
                     sb.AppendLine(",");
 
-                sb.Append($"{header.ColumnName.DBNaming(type)} {header.DataType.GetTypeString(type)}");
+                sb.AppendLine($"{header.ColumnName.DBNaming(type)} {header.DataType.GetTypeString(type)}");
             }
 
             // primary key 
@@ -248,6 +234,7 @@ namespace Bass.Tools.Core.Database
                 sb.AppendLine(";");
             }
         }
+
 
     }
 }

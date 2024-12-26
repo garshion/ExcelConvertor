@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bass.Tools.Core.Excel
 {
@@ -19,7 +17,7 @@ namespace Bass.Tools.Core.Excel
 
         public void Reset()
         {
-            foreach(var data in ExcelSheetDatas.Values)
+            foreach (var data in ExcelSheetDatas.Values)
             {
                 data.Reset();
             }
@@ -27,14 +25,22 @@ namespace Bass.Tools.Core.Excel
             ExcelSheetDatas.Clear();
         }
 
-
+        /// <summary>
+        /// 엑셀 파일을 읽어서 작업용 데이터로 변환합니다. <br/>
+        /// Read Excel files and convert them into working data. <br/>
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public bool ReadFile(string fileName)
         {
+            if (string.IsNullOrWhiteSpace(fileName))
+                return false;   // invalid filename.
+
             string fileFullPath = Path.Combine(ConfigManager.Setting.ExcelFileFolder, fileName);
 
             if (!File.Exists(fileFullPath))
             {
-                Logger.Log("File Not Exists : " + fileName);
+                Logger.Log($"File ({fileName}) Not Exists : ");
                 return false;
             }
 
@@ -45,25 +51,24 @@ namespace Bass.Tools.Core.Excel
                     foreach (var sheet in workbook.Worksheets)
                     {
                         if (sheet.Name.First() == '#')
-                            continue;   // 주석 시트 (첫글자가 #인 시트는 무시)
+                            continue;   // comment sheet. ignore
 
                         if (!sheet.Name.IsValidClassName())
-                            continue;   // 클래스명으로 사용할 수 없는 시트는 무시
+                            continue;   // cannot convert classname. ignore.
 
-                        _ReadSheetData(sheet);
+                        if (!_ReadSheetData(sheet))
+                        {
+                            Logger.Log($"File ({fileName}) Read Sheet ({sheet.Name}) Error!");
+                        }
                     }
                 }
-
             }
             catch (Exception e)
             {
-                Logger.Log("Read Excel File Error : " + e.Message);
+                Logger.Log($"Read Excel File ({fileName}) Error : {e.Message}");
                 Logger.Trace(e);
                 return false;
             }
-
-
-
 
             return true;
         }
@@ -72,9 +77,10 @@ namespace Bass.Tools.Core.Excel
         private bool _ReadSheetData(IXLWorksheet sheet)
         {
             if (null == sheet)
-                return false;
+                return false;   // invalid parameter.
 
             WorkData sheetData = new WorkData();
+
             // Read Sheet Data
             if (!sheetData.ReadSheetData(sheet))
                 return false;
@@ -84,7 +90,7 @@ namespace Bass.Tools.Core.Excel
             {
                 if (!ExcelSheetDatas[sheet.Name].MergeData(sheetData))
                 {
-                    Logger.Log("Different Data Structure : " + sheet.Name);
+                    Logger.Log($"Same SheetName ({sheet.Name}) Exists. But, Data Structure is Different!");
                     return false;
                 }
             }
@@ -95,11 +101,6 @@ namespace Bass.Tools.Core.Excel
 
             return true;
         }
-
-
-
-
-
 
     }
 }

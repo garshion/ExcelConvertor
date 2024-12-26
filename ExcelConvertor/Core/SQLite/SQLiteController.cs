@@ -4,19 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bass.Tools.Core.SQLite
 {
-    public class SQLiteController
+    public class SQLiteController : AWorkController
     {
         private const string SQLITE_EXPORT_FOLDER = "SQLite";
         private const string SQLITE_SINGLE_DB_FILE = "ConvertDatas.db";
 
 
-        public bool Process(List<WorkData> datas)
+        public override bool Process(List<WorkData> datas)
         {
             if (!ConfigManager.Setting.CreateSQLiteDB)
                 return true;    // Skip SQLite DB Process.
@@ -24,9 +21,9 @@ namespace Bass.Tools.Core.SQLite
             if (datas.Count == 0)
                 return false;   // no data.
 
-            _CheckFolder();
+            CheckExportFolder(SQLITE_EXPORT_FOLDER);
 
-            if (!_RemoveFiles())
+            if (!RemoveFiles(SQLITE_EXPORT_FOLDER))
                 return false;
 
 
@@ -39,36 +36,6 @@ namespace Bass.Tools.Core.SQLite
             return true;
         }
 
-        private void _CheckFolder()
-        {
-            string exportFolder = Path.Combine(ConfigManager.Setting.ExportFolder, SQLITE_EXPORT_FOLDER);
-            if (!Directory.Exists(exportFolder))
-                Directory.CreateDirectory(exportFolder);
-        }
-
-
-        private bool _RemoveFiles()
-        {
-            string exportFolder = Path.Combine(ConfigManager.Setting.ExportFolder, SQLITE_EXPORT_FOLDER);
-            if (!Directory.Exists(exportFolder))
-                return false;
-
-            var files = Directory.GetFiles(exportFolder);
-            foreach (var file in files)
-            {
-                try
-                {
-                    File.Delete(file);
-                }
-                catch (Exception e)
-                {
-                    Logger.Log("Delete File Error : " + e.Message);
-                    Logger.Trace(e);
-                }
-            }
-
-            return true;
-        }
 
         private bool _CreateDB(WorkData data)
         {
@@ -98,14 +65,14 @@ namespace Bass.Tools.Core.SQLite
                 try
                 {
                     con.Open();
-                    // 테이블이 존재하지 않는다면 생성
+                    // Create table if not exists.
                     using (var stmt = con.CreateCommand())
                     {
                         stmt.CommandText = data.GetSQLiteCreateTableQuery();
                         stmt.ExecuteNonQuery();
                     }
 
-                    // 데이터 삽입
+                    // insert datas
                     using (var tran = con.BeginTransaction())
                     {
                         using (var stmt = con.CreateCommand())
@@ -127,7 +94,7 @@ namespace Bass.Tools.Core.SQLite
                 }
                 catch (Exception e)
                 {
-                    Logger.Log("Create SQLite DB Error : " + e.Message);
+                    Logger.Log($"Create SQLite DB Error : {e.Message}");
                     Logger.Trace(e);
                     return false;
                 }

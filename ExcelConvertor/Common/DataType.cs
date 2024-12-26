@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Bass.Tools.ExcelConvertor.Common
+﻿namespace Bass.Tools.ExcelConvertor.Common
 {
     /// <summary>
     /// 프로그램에서 사용하는 데이터 타입과 크기 정보
