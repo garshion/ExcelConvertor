@@ -1,5 +1,8 @@
 using Bass.Tools.Config;
+using Bass.Tools.Core.Excel;
+using Bass.Tools.Log;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Text;
 using System.IO;
@@ -13,7 +16,7 @@ namespace Bass.Tools.ExcelConvertor
 
         private bool mAllControlEnable = true;
 
-
+        private ExcelController mExcelController = new ExcelController();
 
 
         public frmMain()
@@ -225,17 +228,23 @@ namespace Bass.Tools.ExcelConvertor
         {
             _ApplyControlEnable(false);
 
-            // todo : 구현 필요
-            // 로그 삭제 체크부터
-
-
+            if (Logger.DeleteLogFile())
+            {
+                foreach (var item in checkedListExistsExcelFiles.CheckedItems)
+                {
+                    mExcelController.ReadFile(item.ToString());
+                }
+            }
 
             _ApplyControlEnable(true);
         }
 
         private void BtnShowLog_Click(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            if (File.Exists(Logger.LOG_FILE_NAME))
+            {
+                Process.Start("notepad.exe", Logger.LOG_FILE_NAME);
+            }
         }
 
         private void BtnBrowseExportFolder_Click(object sender, EventArgs e)
@@ -370,7 +379,14 @@ namespace Bass.Tools.ExcelConvertor
                 return;
 
             checkedListExistsExcelFiles.Items.Clear();
-            string[] files = Directory.GetFiles(txtExcelFileFolder.Text, "*.xlsx;*.xls;", SearchOption.TopDirectoryOnly);
+            string[] xlsxFiles = Directory.GetFiles(txtExcelFileFolder.Text, "*.xlsx", SearchOption.TopDirectoryOnly);
+            string[] xlsFiles = Directory.GetFiles(txtExcelFileFolder.Text, "*.xls", SearchOption.TopDirectoryOnly);
+
+            List<string> files = new List<string>();
+            files.AddRange(xlsxFiles);
+            files.AddRange(xlsFiles);
+            files.Sort();
+
             foreach (string file in files)
             {
                 checkedListExistsExcelFiles.Items.Add(Path.GetFileName(file), CheckState.Checked);

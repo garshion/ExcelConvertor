@@ -23,7 +23,6 @@ namespace Bass.Tools.ExcelConvertor.Common
         String,
         DateTime,
         Date,
-        Time,
         Bool,
 
         Max,
@@ -65,7 +64,6 @@ namespace Bass.Tools.ExcelConvertor.Common
                 case EDataType.String:
                 case EDataType.DateTime:
                 case EDataType.Date:
-                case EDataType.Time:
                 case EDataType.Bool:
                     return true;
 
@@ -95,7 +93,7 @@ namespace Bass.Tools.ExcelConvertor.Common
         /// </summary>
         /// <param name="strType"></param>
         /// <returns></returns>
-        public static DataType ToDataType(string strType)
+        public static DataType ToDataType(this string strType)
         {
             switch (strType.ToLower())
             {
@@ -125,12 +123,10 @@ namespace Bass.Tools.ExcelConvertor.Common
                 case "string":
                 case "text":
                     return new DataType(EDataType.String, 0);
-                case "dateTime":
+                case "datetime":
                     return new DataType(EDataType.DateTime, 22);    // YYYY-MM-DD HH:MM:SS.SSS
                 case "date":
                     return new DataType(EDataType.Date, 10);    // YYYY-MM-DD
-                case "time":
-                    return new DataType(EDataType.Time, 12);     // HH:MM:SS.SSS
                 case "bool":
                 case "boolean":
                 case "bit":
@@ -146,7 +142,7 @@ namespace Bass.Tools.ExcelConvertor.Common
             {
                 try
                 {
-                    string num = match.Groups[1].Value;
+                    string num = match.Groups[2].Value;
 
                     // 숫자가 아닌 경우
                     if (!int.TryParse(num, out int size))
@@ -203,8 +199,6 @@ namespace Bass.Tools.ExcelConvertor.Common
                             return "TEXT";
                         case EDataType.Date:
                             return "TEXT";
-                        case EDataType.Time:
-                            return "TEXT";
                         case EDataType.Bool:
                             return "INTEGER";
                         default:
@@ -233,8 +227,6 @@ namespace Bass.Tools.ExcelConvertor.Common
                                 return "DATETIME";
                             case EDataType.Date:
                                 return "DATE";
-                            case EDataType.Time:
-                                return "TIME";
                             case EDataType.Bool:
                                 return "BIT";
                             default:
@@ -264,8 +256,6 @@ namespace Bass.Tools.ExcelConvertor.Common
                                 return "DATETIME";
                             case EDataType.Date:
                                 return "DATE";
-                            case EDataType.Time:
-                                return "TIME";
                             case EDataType.Bool:
                                 return "BIT";
                             default:
@@ -295,8 +285,6 @@ namespace Bass.Tools.ExcelConvertor.Common
                                 return "DateTime";
                             case EDataType.Date:
                                 return "Date";
-                            case EDataType.Time:
-                                return "Time";
                             case EDataType.Bool:
                                 return "bool";
                             default:
@@ -325,8 +313,6 @@ namespace Bass.Tools.ExcelConvertor.Common
                             case EDataType.DateTime:
                                 return "std::string";
                             case EDataType.Date:
-                                return "std::string";
-                            case EDataType.Time:
                                 return "std::string";
                             case EDataType.Bool:
                                 return "bool";

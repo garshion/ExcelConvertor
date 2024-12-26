@@ -63,7 +63,6 @@
             this.checkExportCSSource = new System.Windows.Forms.CheckBox();
             this.txtNamespaceString = new System.Windows.Forms.TextBox();
             this.checkUseNamespace = new System.Windows.Forms.CheckBox();
-            this.progressWork = new System.Windows.Forms.ProgressBar();
             this.btnConvert = new System.Windows.Forms.Button();
             this.btnShowLog = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -478,17 +477,9 @@
             this.checkUseNamespace.Text = "Use Namespace";
             this.checkUseNamespace.UseVisualStyleBackColor = true;
             // 
-            // progressWork
-            // 
-            this.progressWork.Location = new System.Drawing.Point(562, 514);
-            this.progressWork.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.progressWork.Name = "progressWork";
-            this.progressWork.Size = new System.Drawing.Size(534, 18);
-            this.progressWork.TabIndex = 9;
-            // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(841, 453);
+            this.btnConvert.Location = new System.Drawing.Point(841, 467);
             this.btnConvert.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(255, 56);
@@ -498,7 +489,7 @@
             // 
             // btnShowLog
             // 
-            this.btnShowLog.Location = new System.Drawing.Point(562, 453);
+            this.btnShowLog.Location = new System.Drawing.Point(562, 467);
             this.btnShowLog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnShowLog.Name = "btnShowLog";
             this.btnShowLog.Size = new System.Drawing.Size(255, 56);
@@ -513,7 +504,6 @@
             this.ClientSize = new System.Drawing.Size(1106, 545);
             this.Controls.Add(this.btnShowLog);
             this.Controls.Add(this.btnConvert);
-            this.Controls.Add(this.progressWork);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -574,7 +564,6 @@
         private System.Windows.Forms.TextBox txtNamespaceString;
         private System.Windows.Forms.RadioButton radioSourceCodeFileExportEachFile;
         private System.Windows.Forms.RadioButton radioSourceCodeFileExportSingle;
-        private System.Windows.Forms.ProgressBar progressWork;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.Button btnShowLog;
         private System.Windows.Forms.Button btnExcelDeselectAll;
