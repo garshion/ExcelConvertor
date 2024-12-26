@@ -254,7 +254,7 @@ namespace Bass.Tools.ExcelConvertor
             }
 
             mConvertEngine.Process(workFileList);
-
+            Logger.SaveLog();
             _ApplyControlEnable(true);
         }
 

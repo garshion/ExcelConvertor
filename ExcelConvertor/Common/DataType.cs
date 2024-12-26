@@ -22,6 +22,17 @@ namespace Bass.Tools.ExcelConvertor.Common
         }
 
         
+        public bool IsSame(DataType other)
+        {
+            if (null == other)
+                return false;
+
+            if (Type != other.Type
+                || Size != other.Size)
+                return false;
+
+            return true;
+        }
 
 
 

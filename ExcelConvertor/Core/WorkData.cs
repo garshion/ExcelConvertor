@@ -79,7 +79,7 @@ namespace Bass.Tools.Core
                 if (HeaderInfo[i].ColumnName != other.HeaderInfo[i].ColumnName)
                     return false;
 
-                if (HeaderInfo[i].DataType != other.HeaderInfo[i].DataType)
+                if (!HeaderInfo[i].DataType.IsSame(other.HeaderInfo[i].DataType))
                     return false;
             }
             return true;
