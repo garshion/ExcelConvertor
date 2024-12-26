@@ -8,22 +8,26 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bass.Tools.Core
 {
     public class ConvertEngine
     {
-        private List<string> mWorkFiles = new List<string>();
+        private List<string> mWorkFiles { get; set; } = new List<string>();
 
         // Controllers
-        private ExcelController mExcelController = new ExcelController();
-        private SQLiteController mSQLiteController = new SQLiteController();
-        private DBController mDBController = new DBController();
-        private ProgrammingController mProgrammingController = new ProgrammingController();
+        private ExcelController mExcelController { get; } = new ExcelController();
+        private SQLiteController mSQLiteController { get; } = new SQLiteController();
+        private DBController mDBController { get; } = new DBController();
+        private ProgrammingController mProgrammingController { get; } = new ProgrammingController();
 
 
+        /// <summary>
+        /// 입력받은 엑셀 파일 목록을 처리합니다. <br/>
+        /// Processes a list of input Excel files. <br/>
+        /// </summary>
+        /// <param name="excelFileList"></param>
+        /// <returns></returns>
         public bool Process(List<string> excelFileList)
         {
             if (null == excelFileList
@@ -43,7 +47,7 @@ namespace Bass.Tools.Core
             mExcelController.Reset();
 
             // Read Excel File And Combine Data.
-            if(!_ReadExcelFiles())
+            if (!_ReadExcelFiles())
             {
                 Logger.Log("Read Excel Files Error.");
                 return false;
@@ -84,8 +88,6 @@ namespace Bass.Tools.Core
 
             mWorkFiles.Clear();
 
-
-
             foreach (string file in excelFileList)
             {
                 string fullPath = Path.Combine(ConfigManager.Setting.ExcelFileFolder, file);
@@ -105,7 +107,7 @@ namespace Bass.Tools.Core
             if (mWorkFiles.Count == 0)
                 return false; // no files.
 
-            foreach(var file in mWorkFiles)
+            foreach (var file in mWorkFiles)
             {
                 if (!mExcelController.ReadFile(file))
                 {
@@ -117,13 +119,8 @@ namespace Bass.Tools.Core
                 }
             }
 
-
             return true;
         }
-
-
-
-
 
     }
 }

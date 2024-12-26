@@ -1,30 +1,13 @@
 ﻿using Bass.Tools.Common;
-using Bass.Tools.ExcelConvertor.Common;
-
-
-
-/* 'ExcelConvertor (net48)' 프로젝트에서 병합되지 않은 변경 내용
-이전:
-using Bass.Tools.Log;
-이후:
-using Bass.Tools.Core;
-using Bass.Tools.Core;
-using Bass.Tools.Core.Excel;
-using Bass.Tools.Log;
-*/
 using Bass.Tools.Log;
 using ClosedXML.Excel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bass.Tools.Core
 {
     public class WorkData
     {
-        public string SheetName { get; set; } = string.Empty;
+        public string SheetName = string.Empty;
 
         public List<WorkDataHeaderInfo> HeaderInfo { get; set; } = new List<WorkDataHeaderInfo>();
 
@@ -43,8 +26,12 @@ namespace Bass.Tools.Core
             SheetName = string.Empty;
             HeaderInfo.Clear();
             Datas.Clear();
-        }
 
+            mRowCount = 0;
+            mColCount = 0;
+            mNameRow = 0;
+            mTypeRow = 0;
+        }
 
         public bool IsValidHeader()
         {
@@ -63,27 +50,6 @@ namespace Bass.Tools.Core
             return true;    // OK
         }
 
-        public bool CheckSameSpecStructure(WorkData other)
-        {
-            if (null == other)
-                return false;   // invalid parameter.
-
-            if (HeaderInfo.Count != other.HeaderInfo.Count)
-                return false;   // Different Column Count.
-
-
-            // 동일한 순서가 아니라면 다른 구조로 간주함.
-
-            for (int i = 0; i < HeaderInfo.Count; i++)
-            {
-                if (HeaderInfo[i].ColumnName != other.HeaderInfo[i].ColumnName)
-                    return false;
-
-                if (!HeaderInfo[i].DataType.IsSame(other.HeaderInfo[i].DataType))
-                    return false;
-            }
-            return true;
-        }
 
         /// <summary>
         /// Merge Same Sheet Data
@@ -98,13 +64,47 @@ namespace Bass.Tools.Core
             if (!SheetName.Equals(other.SheetName))
                 return false;   // not matched sheet name.
 
-            if (!CheckSameSpecStructure(other))
+            if (!_CheckSameSpecStructure(other))
                 return false;   // Different Structure.
 
             Datas.AddRange(other.Datas);
             return true;
         }
 
+        /// <summary>
+        /// 두 데이터의 사양이 동일한지 확인합니다. <br/>
+        /// Verify that the specifications of both data are identical. <br/>
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        private bool _CheckSameSpecStructure(WorkData other)
+        {
+            if (null == other)
+                return false;   // invalid parameter.
+
+            if (HeaderInfo.Count != other.HeaderInfo.Count)
+                return false;   // Different Column Count.
+
+
+            // 동일한 순서가 아니라면 다른 구조로 간주함.
+            // If the order is not the same, they are considered different structures.
+            for (int i = 0; i < HeaderInfo.Count; i++)
+            {
+                if (HeaderInfo[i].ColumnName != other.HeaderInfo[i].ColumnName)
+                    return false;
+
+                if (!HeaderInfo[i].DataType.IsSame(other.HeaderInfo[i].DataType))
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Load Excel Sheet Data And Parse.
+        /// </summary>
+        /// <param name="sheet"></param>
+        /// <returns></returns>
         public bool ReadSheetData(IXLWorksheet sheet)
         {
             if (null == sheet)
@@ -124,7 +124,6 @@ namespace Bass.Tools.Core
 
             if (!_ReadData(sheet))
                 return false;
-
 
             return true;
         }
@@ -263,11 +262,6 @@ namespace Bass.Tools.Core
 
             return true;
         }
-
-
-      
-
-
 
     }
 }
