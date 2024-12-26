@@ -1,13 +1,14 @@
 # ExcelConvertor
 
-엑셀 파일을 게임에서 사용하기 위한 리소스로 변환해주는 툴 입니다.
+엑셀 파일을 게임에서 사용하기 위한 리소스로 변환해주는 툴 입니다.<br/>
+
 ## 사용한 nuget 라이브러리
-이 프로젝트는 다음 라이브러리들의 nuget package 를 사용하였습니다.
-각 라이브러리들의 라이센스는 각 프로젝트의 라이센스를 참고하시기 바랍니다.
+이 프로젝트는 다음 라이브러리들의 nuget package 를 사용하였습니다. <br/>
+각 라이브러리들의 라이센스는 각 프로젝트의 라이센스를 참고하시기 바랍니다.<br/>
 
 - ClosedXML (MIT License, https://github.com/ClosedXML/ClosedXML)
 - Newtonsoft.Json (MIT License, https://www.newtonsoft.com/json)
-- SystemData.SQLite.Core (Public Domain, https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki)
+- System.Data.SQLite.Core (Public Domain, https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki)
 
 ## 사용 방법
 
