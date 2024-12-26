@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bass.Tools.Core.Database
+namespace Bass.Tools.Core.Programming
 {
-    public class DBController
+    public class ProgrammingController
     {
         public bool Process(List<WorkData> datas)
         {

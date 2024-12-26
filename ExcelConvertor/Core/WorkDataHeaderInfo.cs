@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bass.Tools.Core.Excel
+namespace Bass.Tools.Core
 {
-    public class ExcelHeaderInfo
+    public class WorkDataHeaderInfo
     {
         public int ColumnIndex { get; set; } = 0;
         public string ColumnName { get; set; } = string.Empty;
-        public EDataType DataType { get; set; } = EDataType.None;
+        public DataType DataType { get; set; } = new DataType();
         public bool PrimaryKey { get; set; } = false;
 
         public bool SetData(string name, string type, int index)
@@ -26,7 +26,7 @@ namespace Bass.Tools.Core.Excel
                         var getType = tokens[0].ToDataType();
                         if (getType.Type.IsValid())
                         {
-                            DataType = getType.Type;
+                            DataType = getType;
                         }
                         else
                         {
@@ -44,7 +44,7 @@ namespace Bass.Tools.Core.Excel
                         var getType = tokens[1].ToDataType();
                         if (getType.Type.IsValid())
                         {
-                            DataType = getType.Type;
+                            DataType = getType;
                         }
                         else
                         {
@@ -64,7 +64,7 @@ namespace Bass.Tools.Core.Excel
 
         public bool IsValidColumnData(string colunmData)
         {
-            switch (DataType)
+            switch (DataType.Type)
             {
                 case EDataType.Int8:
                     return sbyte.TryParse(colunmData, out var _);

@@ -1,4 +1,17 @@
 ﻿using Bass.Tools.Common;
+using Bass.Tools.ExcelConvertor.Common;
+
+
+
+/* 'ExcelConvertor (net48)' 프로젝트에서 병합되지 않은 변경 내용
+이전:
+using Bass.Tools.Log;
+이후:
+using Bass.Tools.Core;
+using Bass.Tools.Core;
+using Bass.Tools.Core.Excel;
+using Bass.Tools.Log;
+*/
 using Bass.Tools.Log;
 using ClosedXML.Excel;
 using System;
@@ -7,13 +20,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bass.Tools.Core.Excel
+namespace Bass.Tools.Core
 {
-    public class ExcelSheetData
+    public class WorkData
     {
         public string SheetName { get; set; } = string.Empty;
 
-        public List<ExcelHeaderInfo> HeaderInfo { get; set; } = new List<ExcelHeaderInfo>();
+        public List<WorkDataHeaderInfo> HeaderInfo { get; set; } = new List<WorkDataHeaderInfo>();
 
         public List<List<string>> Datas { get; set; } = new List<List<string>>();
 
@@ -50,7 +63,7 @@ namespace Bass.Tools.Core.Excel
             return true;    // OK
         }
 
-        public bool CheckSameSpecStructure(ExcelSheetData other)
+        public bool CheckSameSpecStructure(WorkData other)
         {
             if (null == other)
                 return false;   // invalid parameter.
@@ -77,7 +90,7 @@ namespace Bass.Tools.Core.Excel
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool MergeData(ExcelSheetData other)
+        public bool MergeData(WorkData other)
         {
             if (null == other)
                 return false;   // invalid parameter.
@@ -189,7 +202,7 @@ namespace Bass.Tools.Core.Excel
 
                 var type = sheet.Cell(mTypeRow, i).Value.ToString();
 
-                var header = new ExcelHeaderInfo();
+                var header = new WorkDataHeaderInfo();
 
                 if (header.SetData(name, type, i))
                 {
@@ -224,7 +237,7 @@ namespace Bass.Tools.Core.Excel
                     var cell = sheet.Cell(row, header.ColumnIndex);
                     string cellData;
 
-                    if(cell.DataType == XLDataType.DateTime)
+                    if (cell.DataType == XLDataType.DateTime)
                     {
                         cellData = cell.GetDateTime().ToString("yyyy-MM-dd HH:mm:ss");
                     }
@@ -233,7 +246,7 @@ namespace Bass.Tools.Core.Excel
                         cellData = cell.Value.ToString();
                     }
 
-//var cellData = sheet.Cell(row, header.ColumnIndex).Value.ToString();
+                    //var cellData = sheet.Cell(row, header.ColumnIndex).Value.ToString();
                     if (!header.IsValidColumnData(cellData))
                     {
                         Logger.Log($"Read Data - Invalid Data Type. Sheet ({SheetName}) Row ({row}) Column ({header.ColumnName}/{header.ColumnIndex})");
@@ -250,6 +263,9 @@ namespace Bass.Tools.Core.Excel
 
             return true;
         }
+
+
+      
 
 
 

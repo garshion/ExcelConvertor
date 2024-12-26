@@ -1,4 +1,5 @@
 using Bass.Tools.Config;
+using Bass.Tools.Core;
 using Bass.Tools.Core.Excel;
 using Bass.Tools.Log;
 using System;
@@ -16,7 +17,9 @@ namespace Bass.Tools.ExcelConvertor
 
         private bool mAllControlEnable = true;
 
-        private ExcelController mExcelController = new ExcelController();
+        //private ExcelController mExcelController = new ExcelController();
+        private ConvertEngine mConvertEngine = new ConvertEngine();
+
 
 
         public frmMain()
@@ -228,13 +231,29 @@ namespace Bass.Tools.ExcelConvertor
         {
             _ApplyControlEnable(false);
 
-            if (Logger.DeleteLogFile())
+            if (!Logger.DeleteLogFile())
+            {
+                MessageBox.Show("Delete Log File Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _ApplyControlEnable(true);
+                return;
+            }
+
+            List<string> workFileList = new List<string>();
             {
                 foreach (var item in checkedListExistsExcelFiles.CheckedItems)
                 {
-                    mExcelController.ReadFile(item.ToString());
+                    workFileList.Add(item.ToString());
                 }
             }
+
+            if (workFileList.Count == 0)
+            {
+                MessageBox.Show("No Excel Files Selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _ApplyControlEnable(true);
+                return;
+            }
+
+            mConvertEngine.Process(workFileList);
 
             _ApplyControlEnable(true);
         }

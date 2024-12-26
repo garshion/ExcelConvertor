@@ -14,7 +14,7 @@ namespace Bass.Tools.Core.Excel
     public class ExcelController
     {
         // <SheetName, Data>
-        public Dictionary<string, ExcelSheetData> ExcelSheetDatas { get; set; } = new Dictionary<string, ExcelSheetData>();
+        public Dictionary<string, WorkData> ExcelSheetDatas { get; set; } = new Dictionary<string, WorkData>();
 
 
 
@@ -71,7 +71,7 @@ namespace Bass.Tools.Core.Excel
             if (null == sheet)
                 return false;
 
-            ExcelSheetData sheetData = new ExcelSheetData();
+            WorkData sheetData = new WorkData();
             // Read Sheet Data
             if (!sheetData.ReadSheetData(sheet))
                 return false;
