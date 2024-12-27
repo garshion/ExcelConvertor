@@ -33,6 +33,7 @@
 - 컬럼명에 'pk ' 가 붙어있으면 해당 컬럼은 데이터베이스에서 Primary Key 가 됩니다.
 - date/datetime 타입의 경우, 비어있다면 '0001-01-01 00:00:00' 으로 입력됩니다.
 - bool 타입의 경우 true/false 이외에 정수로도 표현 가능합니다. (value <= 0) 이면 false, (value > 0) 이면 true 로 입력됩니다.
+- 지원되는 데이터 타입의 경우, 아래 '엑셀 파일 지원 데이터타입 및 변환표' 를 참고하세요.
 
 <img src="https://github.com/garshion/ExcelConvertor/blob/main/res/excel2.png?raw=true"/>
   
