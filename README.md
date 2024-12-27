@@ -11,6 +11,37 @@
 - System.Data.SQLite.Core (Public Domain, https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki)
 
 ## 사용 방법
+<img src="https://github.com/garshion/ExcelConvertor/blob/main/res/usage.png?raw=true"/>
+
+1. 변환할 엑셀 파일이 있는 폴더를 지정합니다.
+2. 폴더에 있는 엑셀 파일들 중, 변환할 엑셀파일을 선택합니다.
+3. 출력 폴더를 지정합니다.
+4. 사용할 옵션들을 선택합니다.
+5. Convert 버튼을 눌러 변환합니다.
+
+<img src="https://github.com/garshion/ExcelConvertor/blob/main/res/export.png?raw=true"/>
+
+변환이 완료되면, Export Folder 아래 Open Folder 버튼을 눌러 결과 파일을 확인할 수 있습니다.
+
+### 엑셀 파일 형태
+
+<img src="https://github.com/garshion/ExcelConvertor/blob/main/res/excel1.png?raw=true"/>
+
+- 첫 번째 컬럼이 비어있거나 #으로 시작하면, 해당 열은 무시됩니다.
+- 처음에 오는 열은 컬럼명, 두 번째 오는 열은 데이터 타입으로 구성되고, 그 이후의 열들은 모두 데이터로 인식합니다.
+- 컬럼명이 비어있거나, #으로 시작하면 해당 행은 무시됩니다.
+- 컬럼명에 'pk ' 가 붙어있으면 해당 컬럼은 데이터베이스에서 Primary Key 가 됩니다.
+- date/datetime 타입의 경우, 비어있다면 '0001-01-01 00:00:00' 으로 입력됩니다.
+- bool 타입의 경우 true/false 이외에 정수로도 표현 가능합니다. (value <= 0) 이면 false, (value > 0) 이면 true 로 입력됩니다.
+
+<img src="https://github.com/garshion/ExcelConvertor/blob/main/res/excel2.png?raw=true"/>
+  
+- 하나의 파일에 여러 개의 시트가 존재 가능합니다.
+  - 시트명이 #로 시작하면, 해당 시트는 무시됩니다.
+  - 시트명은 C#, C++ 클래스명으로 사용 가능한 형태만 허용됩니다.
+- 여러 파일에 같은 이름의 시트가 있는 경우, 구조가 같은 경우 데이터가 합쳐져서 변환됩니다.
+  - 컬럼명과 순서, 타입이 일치해야 같은 구조로 판단합니다.  
+
 
 ### 변환 가능한 타입
 - SQLite .db
@@ -20,6 +51,7 @@
 - 프로그래밍 언어 데이터 구조 소스코드.
   - C#
   - C++
+
 ### 엑셀 파일 지원 데이터타입 및 변환표
 <details>
 <table>
