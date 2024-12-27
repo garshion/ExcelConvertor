@@ -1,11 +1,9 @@
 using Bass.Tools.Config;
 using Bass.Tools.Core;
-using Bass.Tools.Core.Excel;
 using Bass.Tools.Log;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing.Text;
 using System.IO;
 using System.Windows.Forms;
 
@@ -14,13 +12,9 @@ namespace Bass.Tools.ExcelConvertor
     public partial class frmMain : Form
     {
         private bool mSettingLock = false;
-
         private bool mAllControlEnable = true;
 
-        //private ExcelController mExcelController = new ExcelController();
         private ConvertEngine mConvertEngine = new ConvertEngine();
-
-
 
         public frmMain()
         {
@@ -29,6 +23,12 @@ namespace Bass.Tools.ExcelConvertor
 
             ConfigManager.Load();
             _OnLoadConfig();
+            _UpdateControlEnable();
+
+#if !DEBUG
+            btnShowLog.Visible = false;
+#endif
+
         }
 
         #region Config Load/Save
@@ -256,6 +256,8 @@ namespace Bass.Tools.ExcelConvertor
             mConvertEngine.Process(workFileList);
             Logger.SaveLog();
             _ApplyControlEnable(true);
+
+            MessageBox.Show("Convert Complete.", "Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BtnShowLog_Click(object sender, EventArgs e)

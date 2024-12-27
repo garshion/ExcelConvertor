@@ -494,7 +494,7 @@
             this.btnShowLog.Name = "btnShowLog";
             this.btnShowLog.Size = new System.Drawing.Size(255, 56);
             this.btnShowLog.TabIndex = 11;
-            this.btnShowLog.Text = "Show Log";
+            this.btnShowLog.Text = "Show Log (Debug Only)";
             this.btnShowLog.UseVisualStyleBackColor = true;
             // 
             // frmMain
