@@ -246,6 +246,7 @@ namespace Bass.Tools.Core
                     {
                         cellData = cell.Value.ToString();
 
+                        // 입력 데이터 보정
                         switch (header.DataType.Type)
                         {
                             case EDataType.DateTime:
@@ -253,8 +254,23 @@ namespace Bass.Tools.Core
                                 if (!header.IsValidColumnData(cell.Value.ToString()))
                                 {
                                     // datetime 타입인데 여기로 왔다면, 잘못된 데이터. 최소값으로 설정.
-                                    Logger.Log($"Invalid DateTime Value. Set Default. Sheet ({SheetName}) Row ({row}) Column ({header.ColumnName}/{header.ColumnIndex}) Value : {cell.Value.ToString()}");
                                     cellData = DateTime.MinValue.ToString("yyyy-MM-dd HH:mm:ss");
+                                }
+                                break;
+                            case EDataType.Bool:
+                                {
+                                    if (!header.IsValidColumnData(cell.Value.ToString()))
+                                    {
+                                        // 숫자로 변환할 수 없다면, 잘못된 데이터.
+                                        if (int.TryParse(cellData, out int nValue))
+                                        {
+                                            cellData = (nValue > 0).ToString();
+                                        }
+                                        else
+                                        {
+                                            bOK = false;
+                                        }
+                                    }
                                 }
                                 break;
                             default:
@@ -264,7 +280,7 @@ namespace Bass.Tools.Core
 
                     if (!header.IsValidColumnData(cellData))
                     {
-                        Logger.Log($"Read Data - Invalid Data Type. Sheet ({SheetName}) Row ({row}) Column ({header.ColumnName}/{header.ColumnIndex})");
+                        Logger.Log($"Invalid Data Type. Sheet ({SheetName}) Row ({row}) Column ({header.ColumnName}/{header.ColumnIndex}) TargetType ({header.DataType.Type}) Value : {cell.Value.ToString()}");
                         bOK = false;
                         break;
                     }

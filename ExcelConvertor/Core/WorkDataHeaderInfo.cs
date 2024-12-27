@@ -80,11 +80,7 @@ namespace Bass.Tools.Core
                     return bool.TryParse(colunmData, out var _);
                 case EDataType.Date:
                 case EDataType.DateTime:
-                    {
-                        //if (string.IsNullOrEmpty(colunmData))
-                        //    return true;    // MinValue
-                        return DateTime.TryParse(colunmData, out var _);
-                    }
+                    return DateTime.TryParse(colunmData, out var _);
                 default:
                     return false;
             }
