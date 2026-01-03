@@ -32,6 +32,7 @@ namespace Bass.Tools.Config
         public bool ExportCPPSourceCode { get; set; } = false;
         public EExportFileOption SourceCodeFileOption { get; set; } = EExportFileOption.SingleFile;
         public ESourceCodeDataOption SourceCodeDataOption { get; set; } = ESourceCodeDataOption.Class;
+        public ECppStringType CppStringType { get; set; } = ECppStringType.StdWString;
 
 
         public ConfigData()
@@ -57,6 +58,7 @@ namespace Bass.Tools.Config
 
             SourceCodeFileOption = EExportFileOption.SingleFile;
             SourceCodeDataOption = ESourceCodeDataOption.Class;
+            CppStringType = ECppStringType.StdWString;
         }
 
     }

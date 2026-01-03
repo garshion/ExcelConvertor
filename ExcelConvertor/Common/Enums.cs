@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Bass.Tools.Config;
+using System.Text.RegularExpressions;
 
 namespace Bass.Tools.ExcelConvertor.Common
 {
@@ -209,7 +210,7 @@ namespace Bass.Tools.ExcelConvertor.Common
                             case ETargetType.CSharp:
                                 return "string.Empty";
                             case ETargetType.CPlusPlus:
-                                return "std::string()";
+                                return _GetCppStringDefaultValue();
                             default:
                                 break;
                         }
@@ -223,7 +224,7 @@ namespace Bass.Tools.ExcelConvertor.Common
                             case ETargetType.CSharp:
                                 return "DateTime.MinValue";
                             case ETargetType.CPlusPlus:
-                                return "std::string()";
+                                return _GetCppStringDefaultValue();
                             default:
                                 break;
                         }
@@ -383,11 +384,11 @@ namespace Bass.Tools.ExcelConvertor.Common
                             case EDataType.Double:
                                 return "double";
                             case EDataType.String:
-                                return "std::string";
+                                return _GetCppStringTypeName();
                             case EDataType.DateTime:
-                                return "std::string";
+                                return _GetCppStringTypeName();
                             case EDataType.Date:
-                                return "std::string";
+                                return _GetCppStringTypeName();
                             case EDataType.Bool:
                                 return "bool";
                             default:
@@ -401,6 +402,36 @@ namespace Bass.Tools.ExcelConvertor.Common
             }
 
             return string.Empty;    // invalid target or type
+        }
+
+        private static string _GetCppStringTypeName()
+        {
+            switch (ConfigManager.Setting.CppStringType)
+            {
+                case ECppStringType.StdString:
+                    return "std::string";
+                case ECppStringType.StdWString:
+                    return "std::wstring";
+                case ECppStringType.StdU8String:
+                    return "std::u8string";
+                default:
+                    return "std::wstring";
+            }
+        }
+
+        private static string _GetCppStringDefaultValue()
+        {
+            switch (ConfigManager.Setting.CppStringType)
+            {
+                case ECppStringType.StdString:
+                    return "std::string()";
+                case ECppStringType.StdWString:
+                    return "std::wstring()";
+                case ECppStringType.StdU8String:
+                    return "std::u8string()";
+                default:
+                    return "std::wstring()";
+            }
         }
 
     }

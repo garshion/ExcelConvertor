@@ -19,6 +19,7 @@ namespace Bass.Tools.ExcelConvertor
         public frmMain()
         {
             InitializeComponent();
+            _InitializeComboBoxes();
             _AddControlEvent();
 
             ConfigManager.Load();
@@ -32,6 +33,11 @@ namespace Bass.Tools.ExcelConvertor
         }
 
         #region Config Load/Save
+
+        private void _InitializeComboBoxes()
+        {
+            comboCppStringType.Items.AddRange(new object[] { "std::string", "std::wstring", "std::u8string" });
+        }
 
         private void _OnLoadConfig()
         {
@@ -67,6 +73,8 @@ namespace Bass.Tools.ExcelConvertor
                 radioUseClass.Checked = true;
             else
                 radioUseStruct.Checked = true;
+
+            comboCppStringType.SelectedIndex = (int)ConfigManager.Setting.CppStringType;
 
             _ExcelFileFolderRefresh();
 
@@ -112,6 +120,8 @@ namespace Bass.Tools.ExcelConvertor
             radioUseClass.Enabled = enable;
             radioUseStruct.Enabled = enable;
             txtNamespaceString.Enabled = enable;
+            comboCppStringType.Enabled = enable;
+            lblCppStringType.Enabled = enable;
 
             if (enable)
                 _UpdateControlEnable();
@@ -176,6 +186,18 @@ namespace Bass.Tools.ExcelConvertor
                 radioUseStruct.Enabled = false;
             }
 
+            // C++ String Type Option
+            if (checkExportCPPSource.Checked)
+            {
+                comboCppStringType.Enabled = true;
+                lblCppStringType.Enabled = true;
+            }
+            else
+            {
+                comboCppStringType.Enabled = false;
+                lblCppStringType.Enabled = false;
+            }
+
         }
 
 
@@ -223,6 +245,9 @@ namespace Bass.Tools.ExcelConvertor
             txtNamespaceString.TextChanged += _ApplySetting;
             txtExcelFileFolder.TextChanged += _ApplySetting;
             txtExportFolder.TextChanged += _ApplySetting;
+
+            // ComboBox Actions
+            comboCppStringType.SelectedIndexChanged += _ApplySetting;
         }
 
         #region Button Click Event
@@ -381,6 +406,8 @@ namespace Bass.Tools.ExcelConvertor
             else
                 ConfigManager.Setting.SourceCodeDataOption = ESourceCodeDataOption.Struct;
 
+            if (comboCppStringType.SelectedIndex >= 0)
+                ConfigManager.Setting.CppStringType = (ECppStringType)comboCppStringType.SelectedIndex;
 
             ConfigManager.Save();
 

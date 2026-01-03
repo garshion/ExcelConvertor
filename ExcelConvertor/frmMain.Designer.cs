@@ -54,6 +54,8 @@
             this.checkCreateMSSQLScheme = new System.Windows.Forms.CheckBox();
             this.checkCreateMySQLScheme = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.comboCppStringType = new System.Windows.Forms.ComboBox();
+            this.lblCppStringType = new System.Windows.Forms.Label();
             this.radioSourceCodeFileExportEachFile = new System.Windows.Forms.RadioButton();
             this.radioSourceCodeFileExportSingle = new System.Windows.Forms.RadioButton();
             this.checkExportCPPSource = new System.Windows.Forms.CheckBox();
@@ -356,9 +358,11 @@
             this.checkCreateMySQLScheme.TabIndex = 0;
             this.checkCreateMySQLScheme.Text = "Create MySQL Scheme";
             this.checkCreateMySQLScheme.UseVisualStyleBackColor = true;
-            // 
+            //
             // groupBox5
-            // 
+            //
+            this.groupBox5.Controls.Add(this.comboCppStringType);
+            this.groupBox5.Controls.Add(this.lblCppStringType);
             this.groupBox5.Controls.Add(this.radioSourceCodeFileExportEachFile);
             this.groupBox5.Controls.Add(this.radioSourceCodeFileExportSingle);
             this.groupBox5.Controls.Add(this.checkExportCPPSource);
@@ -374,9 +378,28 @@
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Source Code Option";
-            // 
+            //
+            // lblCppStringType
+            //
+            this.lblCppStringType.AutoSize = true;
+            this.lblCppStringType.Location = new System.Drawing.Point(178, 86);
+            this.lblCppStringType.Name = "lblCppStringType";
+            this.lblCppStringType.Size = new System.Drawing.Size(100, 12);
+            this.lblCppStringType.TabIndex = 7;
+            this.lblCppStringType.Text = "C++ String Type:";
+            //
+            // comboCppStringType
+            //
+            this.comboCppStringType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboCppStringType.FormattingEnabled = true;
+            this.comboCppStringType.Location = new System.Drawing.Point(178, 100);
+            this.comboCppStringType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboCppStringType.Name = "comboCppStringType";
+            this.comboCppStringType.Size = new System.Drawing.Size(160, 20);
+            this.comboCppStringType.TabIndex = 8;
+            //
             // radioSourceCodeFileExportEachFile
-            // 
+            //
             this.radioSourceCodeFileExportEachFile.AutoSize = true;
             this.radioSourceCodeFileExportEachFile.Location = new System.Drawing.Point(8, 125);
             this.radioSourceCodeFileExportEachFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -409,16 +432,16 @@
             this.checkExportCPPSource.TabIndex = 4;
             this.checkExportCPPSource.Text = "Create C++ Source Code";
             this.checkExportCPPSource.UseVisualStyleBackColor = true;
-            // 
+            //
             // groupBox6
-            // 
+            //
             this.groupBox6.Controls.Add(this.radioUseClass);
             this.groupBox6.Controls.Add(this.radioUseStruct);
-            this.groupBox6.Location = new System.Drawing.Point(271, 74);
+            this.groupBox6.Location = new System.Drawing.Point(350, 74);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox6.Size = new System.Drawing.Size(257, 66);
+            this.groupBox6.Size = new System.Drawing.Size(175, 66);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Data Option";
@@ -568,5 +591,7 @@
         private System.Windows.Forms.Button btnShowLog;
         private System.Windows.Forms.Button btnExcelDeselectAll;
         private System.Windows.Forms.Button btnExcelSelectAll;
+        private System.Windows.Forms.Label lblCppStringType;
+        private System.Windows.Forms.ComboBox comboCppStringType;
     }
 }
