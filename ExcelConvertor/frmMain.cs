@@ -47,6 +47,7 @@ namespace Bass.Tools.ExcelConvertor
             txtNamespaceString.Text = ConfigManager.Setting.NamespaceString;
 
             checkCreateSQLiteDB.Checked = ConfigManager.Setting.CreateSQLiteDB;
+            txtSQLiteDBFileName.Text = ConfigManager.Setting.SQLiteDBFileName;
             checkCreateMySQLScheme.Checked = ConfigManager.Setting.CreateMySQLScheme;
             checkCreateMSSQLScheme.Checked = ConfigManager.Setting.CreateMSSQLScheme;
             checkCreateDataInsertScript.Checked = ConfigManager.Setting.CreateDataInsertScript;
@@ -113,6 +114,8 @@ namespace Bass.Tools.ExcelConvertor
             checkExportCPPSource.Enabled = enable;
             radioSQLiteDBFileExportSingle.Enabled = enable;
             radioSQLiteDBFileExportEachFile.Enabled = enable;
+            txtSQLiteDBFileName.Enabled = enable;
+            lblSQLiteDBFileName.Enabled = enable;
             radioDBScriptFileExportSingle.Enabled = enable;
             radioDBScriptFileExportEachFile.Enabled = enable;
             radioSourceCodeFileExportSingle.Enabled = enable;
@@ -137,11 +140,15 @@ namespace Bass.Tools.ExcelConvertor
             {
                 radioSQLiteDBFileExportSingle.Enabled = true;
                 radioSQLiteDBFileExportEachFile.Enabled = true;
+                txtSQLiteDBFileName.Enabled = radioSQLiteDBFileExportSingle.Checked;
+                lblSQLiteDBFileName.Enabled = radioSQLiteDBFileExportSingle.Checked;
             }
             else
             {
                 radioSQLiteDBFileExportSingle.Enabled = false;
                 radioSQLiteDBFileExportEachFile.Enabled = false;
+                txtSQLiteDBFileName.Enabled = false;
+                lblSQLiteDBFileName.Enabled = false;
             }
 
             // Database Script Option
@@ -242,6 +249,7 @@ namespace Bass.Tools.ExcelConvertor
             radioUseStruct.CheckedChanged += _ApplySetting;
 
             // textBox Actions
+            txtSQLiteDBFileName.TextChanged += _ApplySetting;
             txtNamespaceString.TextChanged += _ApplySetting;
             txtExcelFileFolder.TextChanged += _ApplySetting;
             txtExportFolder.TextChanged += _ApplySetting;
@@ -376,6 +384,7 @@ namespace Bass.Tools.ExcelConvertor
             ConfigManager.Setting.ExcelFileFolder = txtExcelFileFolder.Text;
             ConfigManager.Setting.ExportFolder = txtExportFolder.Text;
             ConfigManager.Setting.CreateSQLiteDB = checkCreateSQLiteDB.Checked;
+            ConfigManager.Setting.SQLiteDBFileName = txtSQLiteDBFileName.Text;
 
             if (radioSQLiteDBFileExportSingle.Checked)
                 ConfigManager.Setting.SQLiteDBFileOption = EExportFileOption.SingleFile;

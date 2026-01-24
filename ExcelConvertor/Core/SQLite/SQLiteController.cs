@@ -10,7 +10,6 @@ namespace Bass.Tools.Core.SQLite
     public class SQLiteController : AWorkController
     {
         private const string SQLITE_EXPORT_FOLDER = "SQLite";
-        private const string SQLITE_SINGLE_DB_FILE = "ConvertDatas.db";
 
 
         public override bool Process(List<WorkData> datas)
@@ -52,7 +51,10 @@ namespace Bass.Tools.Core.SQLite
                     fileName = Path.Combine(ConfigManager.Setting.ExportFolder, SQLITE_EXPORT_FOLDER, $"{data.SheetName}.db");
                     break;
                 case EExportFileOption.SingleFile:
-                    fileName = Path.Combine(ConfigManager.Setting.ExportFolder, SQLITE_EXPORT_FOLDER, SQLITE_SINGLE_DB_FILE);
+                    var dbFileName = ConfigManager.Setting.SQLiteDBFileName;
+                    if (string.IsNullOrWhiteSpace(dbFileName))
+                        dbFileName = "ConvertDatas";
+                    fileName = Path.Combine(ConfigManager.Setting.ExportFolder, SQLITE_EXPORT_FOLDER, $"{dbFileName}.db");
                     break;
                 default:
                     return false;

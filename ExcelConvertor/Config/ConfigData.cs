@@ -16,6 +16,7 @@ namespace Bass.Tools.Config
         // SQLite Databse Option
         public bool CreateSQLiteDB { get; set; } = true;
         public EExportFileOption SQLiteDBFileOption { get; set; } = EExportFileOption.SingleFile;
+        public string SQLiteDBFileName { get; set; } = "ConvertDatas";
 
 
         // Database Script Option
@@ -45,6 +46,7 @@ namespace Bass.Tools.Config
             ExportFolder = Environment.CurrentDirectory + "\\Export\\";
             CreateSQLiteDB = true;
             SQLiteDBFileOption = EExportFileOption.SingleFile;
+            SQLiteDBFileName = "ConvertDatas";
 
             CreateMySQLScheme = false;
             CreateMSSQLScheme = false;

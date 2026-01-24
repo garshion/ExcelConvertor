@@ -44,6 +44,8 @@
             this.txtExportFolder = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtSQLiteDBFileName = new System.Windows.Forms.TextBox();
+            this.lblSQLiteDBFileName = new System.Windows.Forms.Label();
             this.radioSQLiteDBFileExportEachFile = new System.Windows.Forms.RadioButton();
             this.radioSQLiteDBFileExportSingle = new System.Windows.Forms.RadioButton();
             this.checkCreateSQLiteDB = new System.Windows.Forms.CheckBox();
@@ -236,7 +238,9 @@
             this.label2.Text = "Export Folder";
             // 
             // groupBox3
-            // 
+            //
+            this.groupBox3.Controls.Add(this.txtSQLiteDBFileName);
+            this.groupBox3.Controls.Add(this.lblSQLiteDBFileName);
             this.groupBox3.Controls.Add(this.radioSQLiteDBFileExportEachFile);
             this.groupBox3.Controls.Add(this.radioSQLiteDBFileExportSingle);
             this.groupBox3.Controls.Add(this.checkCreateSQLiteDB);
@@ -244,15 +248,33 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(262, 125);
+            this.groupBox3.Size = new System.Drawing.Size(262, 148);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SQLite Database Option";
-            // 
+            //
+            // lblSQLiteDBFileName
+            //
+            this.lblSQLiteDBFileName.AutoSize = true;
+            this.lblSQLiteDBFileName.Location = new System.Drawing.Point(24, 100);
+            this.lblSQLiteDBFileName.Name = "lblSQLiteDBFileName";
+            this.lblSQLiteDBFileName.Size = new System.Drawing.Size(60, 12);
+            this.lblSQLiteDBFileName.TabIndex = 3;
+            this.lblSQLiteDBFileName.Text = "File Name:";
+            //
+            // txtSQLiteDBFileName
+            //
+            this.txtSQLiteDBFileName.Location = new System.Drawing.Point(90, 97);
+            this.txtSQLiteDBFileName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSQLiteDBFileName.Name = "txtSQLiteDBFileName";
+            this.txtSQLiteDBFileName.Size = new System.Drawing.Size(140, 21);
+            this.txtSQLiteDBFileName.TabIndex = 4;
+            this.txtSQLiteDBFileName.Text = "ConvertDatas";
+            //
             // radioSQLiteDBFileExportEachFile
-            // 
+            //
             this.radioSQLiteDBFileExportEachFile.AutoSize = true;
-            this.radioSQLiteDBFileExportEachFile.Location = new System.Drawing.Point(8, 99);
+            this.radioSQLiteDBFileExportEachFile.Location = new System.Drawing.Point(8, 124);
             this.radioSQLiteDBFileExportEachFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioSQLiteDBFileExportEachFile.Name = "radioSQLiteDBFileExportEachFile";
             this.radioSQLiteDBFileExportEachFile.Size = new System.Drawing.Size(112, 16);
@@ -571,6 +593,8 @@
         private System.Windows.Forms.RadioButton radioSQLiteDBFileExportEachFile;
         private System.Windows.Forms.RadioButton radioSQLiteDBFileExportSingle;
         private System.Windows.Forms.CheckBox checkCreateSQLiteDB;
+        private System.Windows.Forms.TextBox txtSQLiteDBFileName;
+        private System.Windows.Forms.Label lblSQLiteDBFileName;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.RadioButton radioDBScriptFileExportEachFile;
         private System.Windows.Forms.RadioButton radioDBScriptFileExportSingle;
