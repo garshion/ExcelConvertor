@@ -21,6 +21,9 @@ namespace Bass.Tools.Core.SQLite
             if (!Directory.Exists(ConfigManager.Setting.ExportFolder))
                 Directory.CreateDirectory(ConfigManager.Setting.ExportFolder);
 
+            // Delete existing DB file before creating new one
+            _DeleteExistingDBFile();
+
             foreach (var data in datas)
             {
                 if (!_CreateDB(data))
@@ -28,6 +31,37 @@ namespace Bass.Tools.Core.SQLite
             }
 
             return true;
+        }
+
+        private void _DeleteExistingDBFile()
+        {
+            try
+            {
+                switch (ConfigManager.Setting.SQLiteDBFileOption)
+                {
+                    case EExportFileOption.SingleFile:
+                        var dbFileName = ConfigManager.Setting.SQLiteDBFileName;
+                        if (string.IsNullOrWhiteSpace(dbFileName))
+                            dbFileName = "ConvertDatas";
+                        string singleFilePath = Path.Combine(ConfigManager.Setting.ExportFolder, $"{dbFileName}.db");
+                        if (File.Exists(singleFilePath))
+                            File.Delete(singleFilePath);
+                        break;
+
+                    case EExportFileOption.EachFile:
+                        // Delete all .db files in export folder
+                        string[] dbFiles = Directory.GetFiles(ConfigManager.Setting.ExportFolder, "*.db", SearchOption.TopDirectoryOnly);
+                        foreach (var file in dbFiles)
+                        {
+                            File.Delete(file);
+                        }
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log($"Delete existing DB file error: {e.Message}");
+            }
         }
 
 
