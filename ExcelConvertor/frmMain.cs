@@ -446,7 +446,11 @@ namespace Bass.Tools.ExcelConvertor
 
             foreach (string file in files)
             {
-                checkedListExistsExcelFiles.Items.Add(Path.GetFileName(file), CheckState.Checked);
+                string fileName = Path.GetFileName(file);
+                if (fileName.StartsWith("~"))
+                    continue;   // skip temp file.
+
+                checkedListExistsExcelFiles.Items.Add(fileName, CheckState.Checked);
             }
         }
 

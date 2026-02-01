@@ -44,9 +44,14 @@ namespace Bass.Tools.Core.Excel
                 return false;
             }
 
+            // Copy to temp file to avoid file lock issue (e.g., Excel is opening the file)
+            string tempFilePath = Path.Combine(Path.GetTempPath(), $"ExcelConvertor_{Guid.NewGuid()}{Path.GetExtension(fileName)}");
+
             try
             {
-                using (var workbook = new XLWorkbook(fileFullPath))
+                File.Copy(fileFullPath, tempFilePath, true);
+
+                using (var workbook = new XLWorkbook(tempFilePath))
                 {
                     foreach (var sheet in workbook.Worksheets)
                     {
@@ -68,6 +73,21 @@ namespace Bass.Tools.Core.Excel
                 Logger.Log($"Read Excel File ({fileName}) Error : {e.Message}");
                 Logger.Trace(e);
                 return false;
+            }
+            finally
+            {
+                // Delete temp file
+                if (File.Exists(tempFilePath))
+                {
+                    try
+                    {
+                        File.Delete(tempFilePath);
+                    }
+                    catch
+                    {
+                        // Ignore delete error
+                    }
+                }
             }
 
             return true;

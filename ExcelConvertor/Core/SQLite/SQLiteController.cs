@@ -9,9 +9,6 @@ namespace Bass.Tools.Core.SQLite
 {
     public class SQLiteController : AWorkController
     {
-        private const string SQLITE_EXPORT_FOLDER = "SQLite";
-
-
         public override bool Process(List<WorkData> datas)
         {
             if (!ConfigManager.Setting.CreateSQLiteDB)
@@ -20,11 +17,9 @@ namespace Bass.Tools.Core.SQLite
             if (datas.Count == 0)
                 return false;   // no data.
 
-            CheckExportFolder(SQLITE_EXPORT_FOLDER);
-
-            if (!RemoveFiles(SQLITE_EXPORT_FOLDER))
-                return false;
-
+            // Export folder check (no subfolder, direct to ExportFolder)
+            if (!Directory.Exists(ConfigManager.Setting.ExportFolder))
+                Directory.CreateDirectory(ConfigManager.Setting.ExportFolder);
 
             foreach (var data in datas)
             {
@@ -48,13 +43,13 @@ namespace Bass.Tools.Core.SQLite
             switch (ConfigManager.Setting.SQLiteDBFileOption)
             {
                 case EExportFileOption.EachFile:
-                    fileName = Path.Combine(ConfigManager.Setting.ExportFolder, SQLITE_EXPORT_FOLDER, $"{data.SheetName}.db");
+                    fileName = Path.Combine(ConfigManager.Setting.ExportFolder, $"{data.SheetName}.db");
                     break;
                 case EExportFileOption.SingleFile:
                     var dbFileName = ConfigManager.Setting.SQLiteDBFileName;
                     if (string.IsNullOrWhiteSpace(dbFileName))
                         dbFileName = "ConvertDatas";
-                    fileName = Path.Combine(ConfigManager.Setting.ExportFolder, SQLITE_EXPORT_FOLDER, $"{dbFileName}.db");
+                    fileName = Path.Combine(ConfigManager.Setting.ExportFolder, $"{dbFileName}.db");
                     break;
                 default:
                     return false;
